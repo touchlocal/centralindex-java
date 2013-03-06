@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The centralindex Java module allows developers to start using the [Central Index](http://centralindex.com/) API with minimal code. The Central Index is a global data exchange, with a simple REST/JSON api. 
+The Centralindex Java module allows developers to start using the [Central Index](http://centralindex.com/) API with minimal code. The Central Index is a global data exchange, with a simple REST/JSON api. 
 
 ## What do I need before I start?
 
@@ -13,15 +13,35 @@ The centralindex Java module allows developers to start using the [Central Index
 
 ## Hello World
 
-You'll need to put the CentralIndex.class file alongside your code.
-
-Then your first script could look something like:  
+Take the Centralindex.java from this repository and add the following code to the bottom:
 
 ```
-
+public static void main(String[] args) throws Exception {
+  try {
+			  
+	  Centralindex ci = new Centralindex("<insert API Key here>",false);			  
+	  String retval = "";
+			  
+	  retval = ci.getEntity("379236608286720");
+			  
+	  System.out.println("Response content " + retval);
+			  
+	 } 
+	 finally {
+			  
+   } 
+}
 ```
 
-You'll find further examples in the "[examples](https://github.com/touchlocal/centralindex-java/tree/master/examples)" subdirectory.
+Compile the code
+```
+  javac -cp "./lib/*" Centralindex.java
+```
+
+and run the compiled Java code:
+```
+  java -cp '.:lib/*' Centralindex
+```
 
 ## Function reference
 
