@@ -933,14 +933,13 @@
    *  @param longitude
    *  @param timezone
    *  @param telephone_number
-   *  @param telephone_type
    *  @param email
    *  @param website
    *  @param category_id
    *  @param category_name
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String telephone_type,String email,String website,String category_id,String category_name) throws Exception { 
+  public String  putBusiness(String name,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String email,String website,String category_id,String category_name) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -957,7 +956,6 @@
     	params.put("longitude", longitude);
     	params.put("timezone", timezone);
     	params.put("telephone_number", telephone_number);
-    	params.put("telephone_type", telephone_type);
     	params.put("email", email);
     	params.put("website", website);
     	params.put("category_id", category_id);
@@ -972,14 +970,16 @@
   /**
    * Provides a personalised URL to redirect a user to add an entity to Central Index
    *
-   *  @param language - The language to use to render the add path
+   *  @param language - The language to use to render the add path e.g. en
+   *  @param portal_name - The name of the website that data is to be added on e.g. YourLocal
    *  @return - the data from the api
   */
-  public String  getEntityAdd(String language) throws Exception { 
+  public String  getEntityAdd(String language,String portal_name) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("language", language);
+    	params.put("portal_name", portal_name);
     	retval = this.doCurl("GET","/entity/add",params);
     } finally { 
     }
@@ -1157,23 +1157,15 @@
    *  @param entity_id
    *  @param number
    *  @param description
-   *  @param premium_rate
-   *  @param telephone_type
-   *  @param tps
-   *  @param ctps
    *  @return - the data from the api
   */
-  public String  postEntityPhone(String entity_id,String number,String description,String premium_rate,String telephone_type,String tps,String ctps) throws Exception { 
+  public String  postEntityPhone(String entity_id,String number,String description) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("number", number);
     	params.put("description", description);
-    	params.put("premium_rate", premium_rate);
-    	params.put("telephone_type", telephone_type);
-    	params.put("tps", tps);
-    	params.put("ctps", ctps);
     	retval = this.doCurl("POST","/entity/phone",params);
     } finally { 
     }
@@ -1207,17 +1199,15 @@
    *  @param entity_id
    *  @param number
    *  @param description
-   *  @param premium_rate
    *  @return - the data from the api
   */
-  public String  postEntityFax(String entity_id,String number,String description,String premium_rate) throws Exception { 
+  public String  postEntityFax(String entity_id,String number,String description) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("number", number);
     	params.put("description", description);
-    	params.put("premium_rate", premium_rate);
     	retval = this.doCurl("POST","/entity/fax",params);
     } finally { 
     }
