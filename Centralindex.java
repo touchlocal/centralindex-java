@@ -482,14 +482,14 @@
   /**
    * Search for matching entities
    *
-   *  @param what
-   *  @param latitude_1
-   *  @param longitude_1
-   *  @param latitude_2
-   *  @param longitude_2
+   *  @param what - What to get results for. E.g. Plumber e.g. plumber
+   *  @param latitude_1 - Latitude of first point in bounding box e.g. 53.396842
+   *  @param longitude_1 - Longitude of first point in bounding box e.g. -6.37619
+   *  @param latitude_2 - Latitude of second point in bounding box e.g. 53.290463
+   *  @param longitude_2 - Longitude of second point in bounding box e.g. -6.207275
    *  @param per_page
    *  @param page
-   *  @param country
+   *  @param country - A valid ISO 3166 country code e.g. ie
    *  @param language
    *  @return - the data from the api
   */
@@ -981,6 +981,56 @@
     	params.put("language", language);
     	params.put("portal_name", portal_name);
     	retval = this.doCurl("GET","/entity/add",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows the removal or insertion of tags into an advertiser object
+   *
+   *  @param gen_id - The gen_id of this advertiser
+   *  @param entity_id - The entity_id of the advertiser
+   *  @param language - The tag language to alter
+   *  @param tags_to_add - The tags to add
+   *  @param tags_to_remove - The tags to remove
+   *  @return - the data from the api
+  */
+  public String  postEntityAdvertiserTag(String gen_id,String entity_id,String language,String tags_to_add,String tags_to_remove) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("gen_id", gen_id);
+    	params.put("entity_id", entity_id);
+    	params.put("language", language);
+    	params.put("tags_to_add", tags_to_add);
+    	params.put("tags_to_remove", tags_to_remove);
+    	retval = this.doCurl("POST","/entity/advertiser/tag",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows the removal or insertion of locations into an advertiser object
+   *
+   *  @param gen_id - The gen_id of this advertiser
+   *  @param entity_id - The entity_id of the advertiser
+   *  @param locations_to_add - The locations to add
+   *  @param locations_to_remove - The locations to remove
+   *  @return - the data from the api
+  */
+  public String  postEntityAdvertiserLocation(String gen_id,String entity_id,String locations_to_add,String locations_to_remove) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("gen_id", gen_id);
+    	params.put("entity_id", entity_id);
+    	params.put("locations_to_add", locations_to_add);
+    	params.put("locations_to_remove", locations_to_remove);
+    	retval = this.doCurl("POST","/entity/advertiser/location",params);
     } finally { 
     }
     return retval;
@@ -1576,14 +1626,28 @@
   /**
    * Supply an address to geocode - returns lat/lon and accuracy
    *
-   *  @param address
+   *  @param address1
+   *  @param address2
+   *  @param address3
+   *  @param district
+   *  @param town
+   *  @param county
+   *  @param postcode
+   *  @param country
    *  @return - the data from the api
   */
-  public String  getToolsGeocode(String address) throws Exception { 
+  public String  getToolsGeocode(String address1,String address2,String address3,String district,String town,String county,String postcode,String country) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
-    	params.put("address", address);
+    	params.put("address1", address1);
+    	params.put("address2", address2);
+    	params.put("address3", address3);
+    	params.put("district", district);
+    	params.put("town", town);
+    	params.put("county", county);
+    	params.put("postcode", postcode);
+    	params.put("country", country);
     	retval = this.doCurl("GET","/tools/geocode",params);
     } finally { 
     }
@@ -1812,9 +1876,12 @@
    *  @param expiry
    *  @param is_national
    *  @param language
+   *  @param reseller_ref
+   *  @param reseller_agent_id
+   *  @param publisher_id
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiser(String entity_id,String tags,String locations,String expiry,String is_national,String language) throws Exception { 
+  public String  postEntityAdvertiser(String entity_id,String tags,String locations,String expiry,String is_national,String language,String reseller_ref,String reseller_agent_id,String publisher_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1824,6 +1891,9 @@
     	params.put("expiry", expiry);
     	params.put("is_national", is_national);
     	params.put("language", language);
+    	params.put("reseller_ref", reseller_ref);
+    	params.put("reseller_agent_id", reseller_agent_id);
+    	params.put("publisher_id", publisher_id);
     	retval = this.doCurl("POST","/entity/advertiser",params);
     } finally { 
     }
@@ -2610,7 +2680,7 @@
 
 
   /**
-   * The search matches a category name or synonym on a given string and language.
+   * The search matches a category name on a given string and language.
    *
    *  @param str - A string to search against, E.g. Plumbers e.g. but
    *  @param language - An ISO compatible language code, E.g. en e.g. en
@@ -2623,6 +2693,26 @@
     	params.put("str", str);
     	params.put("language", language);
     	retval = this.doCurl("GET","/autocomplete/category",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * The search matches a category name or synonym on a given string and language.
+   *
+   *  @param str - A string to search against, E.g. Plumbers e.g. but
+   *  @param language - An ISO compatible language code, E.g. en e.g. en
+   *  @return - the data from the api
+  */
+  public String  getAutocompleteKeyword(String str,String language) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("str", str);
+    	params.put("language", language);
+    	retval = this.doCurl("GET","/autocomplete/keyword",params);
     } finally { 
     }
     return retval;
@@ -2929,6 +3019,104 @@
     	params.put("claimed_user_id", claimed_user_id);
     	params.put("claimed_date", claimed_date);
     	retval = this.doCurl("POST","/entity/claim",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Update/Add a publisher
+   *
+   *  @param publisher_id
+   *  @param country
+   *  @param name
+   *  @param description
+   *  @param active
+   *  @return - the data from the api
+  */
+  public String  postPublisher(String publisher_id,String country,String name,String description,String active) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("publisher_id", publisher_id);
+    	params.put("country", country);
+    	params.put("name", name);
+    	params.put("description", description);
+    	params.put("active", active);
+    	retval = this.doCurl("POST","/publisher",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Delete a publisher with a specified publisher_id
+   *
+   *  @param publisher_id
+   *  @return - the data from the api
+  */
+  public String  deletePublisher(String publisher_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("publisher_id", publisher_id);
+    	retval = this.doCurl("DELETE","/publisher",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns publisher that matches a given publisher id
+   *
+   *  @param publisher_id
+   *  @return - the data from the api
+  */
+  public String  getPublisher(String publisher_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("publisher_id", publisher_id);
+    	retval = this.doCurl("GET","/publisher",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns publisher that matches a given publisher id
+   *
+   *  @param country
+   *  @return - the data from the api
+  */
+  public String  getPublisherByCountry(String country) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country", country);
+    	retval = this.doCurl("GET","/publisher/byCountry",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns publishers that are available for a given entity_id.
+   *
+   *  @param entity_id
+   *  @return - the data from the api
+  */
+  public String  getPublisherByEntityId(String entity_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	retval = this.doCurl("GET","/publisher/byEntityId",params);
     } finally { 
     }
     return retval;
