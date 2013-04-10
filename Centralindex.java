@@ -1,3 +1,4 @@
+Starting Wolf using 'dev' configuration
     /**
     * Central Index
     *
@@ -981,6 +982,28 @@
     	params.put("language", language);
     	params.put("portal_name", portal_name);
     	retval = this.doCurl("GET","/entity/add",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Provides a personalised URL to redirect a user to claim an entity in the Central Index
+   *
+   *  @param language - The language to use to render the add path e.g. en
+   *  @param portal_name - The name of the website that data is to be added on e.g. YourLocal
+   *  @param entity_id - The id of the index card that is being claimed e.g. 379236808425472
+   *  @return - the data from the api
+  */
+  public String  getEntityClaim(String language,String portal_name,String entity_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("language", language);
+    	params.put("portal_name", portal_name);
+    	params.put("entity_id", entity_id);
+    	retval = this.doCurl("GET","/entity/claim",params);
     } finally { 
     }
     return retval;
@@ -3117,6 +3140,76 @@
      try { 
     	params.put("entity_id", entity_id);
     	retval = this.doCurl("GET","/publisher/byEntityId",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Update/Add a country
+   *
+   *  @param country_id
+   *  @param name
+   *  @param synonyms
+   *  @param continentName
+   *  @param continent
+   *  @param geonameId
+   *  @param dbpediaURL
+   *  @param freebaseURL
+   *  @param population
+   *  @param currencyCode
+   *  @param languages
+   *  @param areaInSqKm
+   *  @param capital
+   *  @param east
+   *  @param west
+   *  @param north
+   *  @param south
+   *  @param claimPrice
+   *  @return - the data from the api
+  */
+  public String  postCountry(String country_id,String name,String synonyms,String continentName,String continent,String geonameId,String dbpediaURL,String freebaseURL,String population,String currencyCode,String languages,String areaInSqKm,String capital,String east,String west,String north,String south,String claimPrice) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country_id", country_id);
+    	params.put("name", name);
+    	params.put("synonyms", synonyms);
+    	params.put("continentName", continentName);
+    	params.put("continent", continent);
+    	params.put("geonameId", geonameId);
+    	params.put("dbpediaURL", dbpediaURL);
+    	params.put("freebaseURL", freebaseURL);
+    	params.put("population", population);
+    	params.put("currencyCode", currencyCode);
+    	params.put("languages", languages);
+    	params.put("areaInSqKm", areaInSqKm);
+    	params.put("capital", capital);
+    	params.put("east", east);
+    	params.put("west", west);
+    	params.put("north", north);
+    	params.put("south", south);
+    	params.put("claimPrice", claimPrice);
+    	retval = this.doCurl("POST","/country",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetching a country
+   *
+   *  @param country_id
+   *  @return - the data from the api
+  */
+  public String  getCountry(String country_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country_id", country_id);
+    	retval = this.doCurl("GET","/country",params);
     } finally { 
     }
     return retval;
