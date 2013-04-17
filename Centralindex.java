@@ -357,6 +357,24 @@ Starting Wolf using 'dev' configuration
 
 
   /**
+   * Uploads a JSON file of known format and bulk inserts into DB
+   *
+   *  @param data
+   *  @return - the data from the api
+  */
+  public String  postEntityBulkJson(String data) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("data", data);
+    	retval = this.doCurl("POST","/entity/bulk/json",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Shows the current status of a bulk upload
    *
    *  @param upload_id
@@ -368,6 +386,24 @@ Starting Wolf using 'dev' configuration
      try { 
     	params.put("upload_id", upload_id);
     	retval = this.doCurl("GET","/entity/bulk/csv/status",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Shows the current status of a bulk JSON upload
+   *
+   *  @param upload_id
+   *  @return - the data from the api
+  */
+  public String  getEntityBulkJsonStatus(String upload_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("upload_id", upload_id);
+    	retval = this.doCurl("GET","/entity/bulk/json/status",params);
     } finally { 
     }
     return retval;
@@ -937,10 +973,10 @@ Starting Wolf using 'dev' configuration
    *  @param email
    *  @param website
    *  @param category_id
-   *  @param category_name
+   *  @param category_type
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String email,String website,String category_id,String category_name) throws Exception { 
+  public String  putBusiness(String name,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String email,String website,String category_id,String category_type) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -960,7 +996,7 @@ Starting Wolf using 'dev' configuration
     	params.put("email", email);
     	params.put("website", website);
     	params.put("category_id", category_id);
-    	params.put("category_name", category_name);
+    	params.put("category_type", category_type);
     	retval = this.doCurl("PUT","/business",params);
     } finally { 
     }
@@ -989,20 +1025,20 @@ Starting Wolf using 'dev' configuration
 
 
   /**
-   * Provides a personalised URL to redirect a user to claim an entity in the Central Index
+   * Provides a personalised URL to redirect a user to claim an entity on Central Index
    *
-   *  @param language - The language to use to render the add path e.g. en
-   *  @param portal_name - The name of the website that data is to be added on e.g. YourLocal
-   *  @param entity_id - The id of the index card that is being claimed e.g. 379236808425472
+   *  @param entity_id - Entity ID to be claimed e.g. 380348266819584
+   *  @param language - The language to use to render the claim path e.g. en
+   *  @param portal_name - The name of the website that entity is being claimed on e.g. YourLocal
    *  @return - the data from the api
   */
-  public String  getEntityClaim(String language,String portal_name,String entity_id) throws Exception { 
+  public String  getEntityClaim(String entity_id,String language,String portal_name) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
+    	params.put("entity_id", entity_id);
     	params.put("language", language);
     	params.put("portal_name", portal_name);
-    	params.put("entity_id", entity_id);
     	retval = this.doCurl("GET","/entity/claim",params);
     } finally { 
     }
@@ -1419,20 +1455,38 @@ Starting Wolf using 'dev' configuration
 
 
   /**
+   * Returns the supplied wolf category object by fetching the supplied category_id from our categories object.
+   *
+   *  @param category_id
+   *  @return - the data from the api
+  */
+  public String  getCategory(String category_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("category_id", category_id);
+    	retval = this.doCurl("GET","/category",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * With a known entity id, an category object can be added.
    *
    *  @param entity_id
    *  @param category_id
-   *  @param category_name
+   *  @param category_type
    *  @return - the data from the api
   */
-  public String  postEntityCategory(String entity_id,String category_id,String category_name) throws Exception { 
+  public String  postEntityCategory(String entity_id,String category_id,String category_type) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("category_id", category_id);
-    	params.put("category_name", category_name);
+    	params.put("category_type", category_type);
     	retval = this.doCurl("POST","/entity/category",params);
     } finally { 
     }
@@ -1491,11 +1545,12 @@ Starting Wolf using 'dev' configuration
    *  @param company_name
    *  @param latitude
    *  @param longitude
+   *  @param country
    *  @param name_strictness
    *  @param location_strictness
    *  @return - the data from the api
   */
-  public String  getMatchByphone(String phone,String company_name,String latitude,String longitude,String name_strictness,String location_strictness) throws Exception { 
+  public String  getMatchByphone(String phone,String company_name,String latitude,String longitude,String country,String name_strictness,String location_strictness) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1503,6 +1558,7 @@ Starting Wolf using 'dev' configuration
     	params.put("company_name", company_name);
     	params.put("latitude", latitude);
     	params.put("longitude", longitude);
+    	params.put("country", country);
     	params.put("name_strictness", name_strictness);
     	params.put("location_strictness", location_strictness);
     	retval = this.doCurl("GET","/match/byphone",params);
@@ -3210,6 +3266,52 @@ Starting Wolf using 'dev' configuration
      try { 
     	params.put("country_id", country_id);
     	retval = this.doCurl("GET","/country",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * For insance, reporting a phone number as wrong
+   *
+   *  @param entity_id - A valid entity_id e.g. 379236608286720
+   *  @param gen_id - The gen_id for the item being reported
+   *  @param signal_type - The signal that is to be reported e.g. wrong
+   *  @param data_type - The type of data being reported
+   *  @return - the data from the api
+  */
+  public String  postSignal(String entity_id,String gen_id,String signal_type,String data_type) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("signal_type", signal_type);
+    	params.put("data_type", data_type);
+    	retval = this.doCurl("POST","/signal",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Get the number of times an entity has been served out as an advert or on serps/bdp pages
+   *
+   *  @param entity_id - A valid entity_id e.g. 379236608286720
+   *  @param year - The year to report on
+   *  @param month - The month to report on
+   *  @return - the data from the api
+  */
+  public String  getStatsEntityBy_date(String entity_id,String year,String month) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("year", year);
+    	params.put("month", month);
+    	retval = this.doCurl("GET","/stats/entity/by_date",params);
     } finally { 
     }
     return retval;
