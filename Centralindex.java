@@ -896,16 +896,16 @@ Starting Wolf using 'dev' configuration
    * Supply an entity and an object within it (e.g. a phone number), and retrieve a URL that allows the user to report an issue with that object
    *
    *  @param entity_id - The unique Entity ID e.g. 379236608286720
-   *  @param gen_id - A Unique ID for the object you wish to report, E.g. Phone number e.g. 379236608299008
+   *  @param portal_name - The name of the portal that the user is coming from e.g. YourLocal
    *  @param language
    *  @return - the data from the api
   */
-  public String  getEntityReport(String entity_id,String gen_id,String language) throws Exception { 
+  public String  getEntityReport(String entity_id,String portal_name,String language) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
+    	params.put("portal_name", portal_name);
     	params.put("language", language);
     	retval = this.doCurl("GET","/entity/report",params);
     } finally { 
@@ -3312,6 +3312,88 @@ Starting Wolf using 'dev' configuration
     	params.put("year", year);
     	params.put("month", month);
     	retval = this.doCurl("GET","/stats/entity/by_date",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Update/Add a traction
+   *
+   *  @param traction_id
+   *  @param trigger_type
+   *  @param action_type
+   *  @param email_addresses
+   *  @param title
+   *  @param body
+   *  @param active
+   *  @return - the data from the api
+  */
+  public String  postTraction(String traction_id,String trigger_type,String action_type,String email_addresses,String title,String body,String active) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("traction_id", traction_id);
+    	params.put("trigger_type", trigger_type);
+    	params.put("action_type", action_type);
+    	params.put("email_addresses", email_addresses);
+    	params.put("title", title);
+    	params.put("body", body);
+    	params.put("active", active);
+    	retval = this.doCurl("POST","/traction",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetching a traction
+   *
+   *  @param traction_id
+   *  @return - the data from the api
+  */
+  public String  getTraction(String traction_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("traction_id", traction_id);
+    	retval = this.doCurl("GET","/traction",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetching active tractions
+   *
+   *  @return - the data from the api
+  */
+  public String  getTractionActive() throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	retval = this.doCurl("GET","/traction/active",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Deleting a traction
+   *
+   *  @param traction_id
+   *  @return - the data from the api
+  */
+  public String  deleteTraction(String traction_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("traction_id", traction_id);
+    	retval = this.doCurl("DELETE","/traction",params);
     } finally { 
     }
     return retval;
