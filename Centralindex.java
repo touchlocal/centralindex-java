@@ -1,4 +1,3 @@
-Starting Wolf using 'dev' configuration
     /**
     * Central Index
     *
@@ -2505,21 +2504,17 @@ Starting Wolf using 'dev' configuration
    *
    *  @param entity_id
    *  @param title
-   *  @param description
-   *  @param thumbnail
    *  @param embed_code
    *  @return - the data from the api
   */
-  public String  postEntityVideo(String entity_id,String title,String description,String thumbnail,String embed_code) throws Exception { 
+  public String  postEntityVideoYoutube(String entity_id,String title,String embed_code) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("title", title);
-    	params.put("description", description);
-    	params.put("thumbnail", thumbnail);
     	params.put("embed_code", embed_code);
-    	retval = this.doCurl("POST","/entity/video",params);
+    	retval = this.doCurl("POST","/entity/video/youtube",params);
     } finally { 
     }
     return retval;
@@ -3735,8 +3730,6 @@ Starting Wolf using 'dev' configuration
    *  @param less - the LESS configuration to use to overrides the Bootstrap CSS
    *  @param language - the language in which to render the flatpack site
    *  @param country - the country to use for searches etc
-   *  @param afsId - the adsense-for-search id to use for Google ads on serps
-   *  @param afcId - the adsense-for-content id to use for Google ads on bdps
    *  @param mapsType - the type of maps to use
    *  @param mapKey - the nokia map key to use to render maps
    *  @param analyticsHTML - the html to insert to record page views
@@ -3762,10 +3755,12 @@ Starting Wolf using 'dev' configuration
    *  @param footer_menu - the JSON that describes a navigation at the bottom of the page
    *  @param bdpTitle - The page title of the entity business profile pages
    *  @param bdpDescription - The meta description of entity business profile pages
+   *  @param bdpAds - The block of HTML/JS that renders Ads on BDPs
    *  @param serpTitle - The page title of the serps
    *  @param serpDescription - The meta description of serps
    *  @param serpNumberResults - The number of results per search page
    *  @param serpNumberAdverts - The number of adverts to show on the first search page
+   *  @param serpAds - The block of HTML/JS that renders Ads on Serps
    *  @param cookiePolicyUrl - The cookie policy url of the flatpack
    *  @param cookiePolicyNotice - Whether to show the cookie policy on this flatpack
    *  @param addBusinessButtonText - The text used in the 'Add your business' button
@@ -3773,7 +3768,7 @@ Starting Wolf using 'dev' configuration
    *  @param facebookUrl - Facebook link
    *  @return - the data from the api
   */
-  public String  postFlatpack(String flatpack_id,String domainName,String flatpackName,String less,String language,String country,String afsId,String afcId,String mapsType,String mapKey,String analyticsHTML,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String adblockHeader,String adblock728x90,String adblock468x60,String header_menu,String footer_menu,String bdpTitle,String bdpDescription,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl) throws Exception { 
+  public String  postFlatpack(String flatpack_id,String domainName,String flatpackName,String less,String language,String country,String mapsType,String mapKey,String analyticsHTML,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String adblockHeader,String adblock728x90,String adblock468x60,String header_menu,String footer_menu,String bdpTitle,String bdpDescription,String bdpAds,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String serpAds,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3783,8 +3778,6 @@ Starting Wolf using 'dev' configuration
     	params.put("less", less);
     	params.put("language", language);
     	params.put("country", country);
-    	params.put("afsId", afsId);
-    	params.put("afcId", afcId);
     	params.put("mapsType", mapsType);
     	params.put("mapKey", mapKey);
     	params.put("analyticsHTML", analyticsHTML);
@@ -3810,10 +3803,12 @@ Starting Wolf using 'dev' configuration
     	params.put("footer_menu", footer_menu);
     	params.put("bdpTitle", bdpTitle);
     	params.put("bdpDescription", bdpDescription);
+    	params.put("bdpAds", bdpAds);
     	params.put("serpTitle", serpTitle);
     	params.put("serpDescription", serpDescription);
     	params.put("serpNumberResults", serpNumberResults);
     	params.put("serpNumberAdverts", serpNumberAdverts);
+    	params.put("serpAds", serpAds);
     	params.put("cookiePolicyUrl", cookiePolicyUrl);
     	params.put("cookiePolicyNotice", cookiePolicyNotice);
     	params.put("addBusinessButtonText", addBusinessButtonText);
