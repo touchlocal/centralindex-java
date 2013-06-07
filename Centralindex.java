@@ -2500,19 +2500,17 @@
 
 
   /**
-   * With a known entity id, avideo object can be added.
+   * With a known entity id, a YouTube video object can be added.
    *
    *  @param entity_id
-   *  @param title
    *  @param embed_code
    *  @return - the data from the api
   */
-  public String  postEntityVideoYoutube(String entity_id,String title,String embed_code) throws Exception { 
+  public String  postEntityVideoYoutube(String entity_id,String embed_code) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("title", title);
     	params.put("embed_code", embed_code);
     	retval = this.doCurl("POST","/entity/video/youtube",params);
     } finally { 
