@@ -3856,6 +3856,22 @@
 
 
   /**
+   * Get flatpacks that match the supplied masheryid
+   *
+   *  @return - the data from the api
+  */
+  public String  getFlatpackBy_masheryid() throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	retval = this.doCurl("GET","/flatpack/by_masheryid",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Remove a flatpack using a supplied flatpack_id
    *
    *  @param flatpack_id - the id of the flatpack to delete
@@ -4073,6 +4089,26 @@
     	params.put("portal_name", portal_name);
     	params.put("language", language);
     	retval = this.doCurl("GET","/token/message",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetch token for login path
+   *
+   *  @param portal_name - The name of the application that has initiated the login process, example: 'Your Local'
+   *  @param language - The language for the app
+   *  @return - the data from the api
+  */
+  public String  getTokenLogin(String portal_name,String language) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("portal_name", portal_name);
+    	params.put("language", language);
+    	retval = this.doCurl("GET","/token/login",params);
     } finally { 
     }
     return retval;
