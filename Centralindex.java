@@ -917,6 +917,7 @@
    * Create a new business entity with all it's objects
    *
    *  @param name
+   *  @param building_number
    *  @param address1
    *  @param address2
    *  @param address3
@@ -936,11 +937,12 @@
    *  @param do_not_display
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String email,String website,String category_id,String category_type,String do_not_display) throws Exception { 
+  public String  putBusiness(String name,String building_number,String address1,String address2,String address3,String district,String town,String county,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String email,String website,String category_id,String category_type,String do_not_display) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("name", name);
+    	params.put("building_number", building_number);
     	params.put("address1", address1);
     	params.put("address2", address2);
     	params.put("address3", address3);
@@ -1642,6 +1644,7 @@
   /**
    * Supply an address to geocode - returns lat/lon and accuracy
    *
+   *  @param building_number
    *  @param address1
    *  @param address2
    *  @param address3
@@ -1652,10 +1655,11 @@
    *  @param country
    *  @return - the data from the api
   */
-  public String  getToolsGeocode(String address1,String address2,String address3,String district,String town,String county,String postcode,String country) throws Exception { 
+  public String  getToolsGeocode(String building_number,String address1,String address2,String address3,String district,String town,String county,String postcode,String country) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
+    	params.put("building_number", building_number);
     	params.put("address1", address1);
     	params.put("address2", address2);
     	params.put("address3", address3);
@@ -1857,6 +1861,7 @@
    * With a known entity id, an invoice_address object can be updated.
    *
    *  @param entity_id
+   *  @param building_number
    *  @param address1
    *  @param address2
    *  @param address3
@@ -1867,11 +1872,12 @@
    *  @param address_type
    *  @return - the data from the api
   */
-  public String  postEntityInvoice_address(String entity_id,String address1,String address2,String address3,String district,String town,String county,String postcode,String address_type) throws Exception { 
+  public String  postEntityInvoice_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String postcode,String address_type) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("building_number", building_number);
     	params.put("address1", address1);
     	params.put("address2", address2);
     	params.put("address3", address3);
@@ -1951,6 +1957,7 @@
    * Create/Update a postal address
    *
    *  @param entity_id
+   *  @param building_number
    *  @param address1
    *  @param address2
    *  @param address3
@@ -1962,11 +1969,12 @@
    *  @param do_not_display
    *  @return - the data from the api
   */
-  public String  postEntityPostal_address(String entity_id,String address1,String address2,String address3,String district,String town,String county,String postcode,String address_type,String do_not_display) throws Exception { 
+  public String  postEntityPostal_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String postcode,String address_type,String do_not_display) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("building_number", building_number);
     	params.put("address1", address1);
     	params.put("address2", address2);
     	params.put("address3", address3);
@@ -4014,14 +4022,16 @@
    *
    *  @param language - The language to use to render the add path e.g. en
    *  @param portal_name - The name of the website that data is to be added on e.g. YourLocal
+   *  @param country - The country of the entity to be added e.g. gb
    *  @return - the data from the api
   */
-  public String  getTokenAdd(String language,String portal_name) throws Exception { 
+  public String  getTokenAdd(String language,String portal_name,String country) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("language", language);
     	params.put("portal_name", portal_name);
+    	params.put("country", country);
     	retval = this.doCurl("GET","/token/add",params);
     } finally { 
     }
@@ -4109,6 +4119,38 @@
     	params.put("portal_name", portal_name);
     	params.put("language", language);
     	retval = this.doCurl("GET","/token/login",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetch token for update path
+   *
+   *  @param entity_id - The id of the entity being upgraded
+   *  @param portal_name - The name of the application that has initiated the login process, example: 'Your Local'
+   *  @param language - The language for the app
+   *  @param price - The price of the advert in the entities native currency
+   *  @param max_tags - The number of tags attached to the advert
+   *  @param max_locations - The number of locations attached to the advert
+   *  @param contract_length - The number of days from the initial sale date that the contract is valid for
+   *  @param ref_id - The campaign or reference id
+   *  @return - the data from the api
+  */
+  public String  getTokenUpgrade(String entity_id,String portal_name,String language,String price,String max_tags,String max_locations,String contract_length,String ref_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("portal_name", portal_name);
+    	params.put("language", language);
+    	params.put("price", price);
+    	params.put("max_tags", max_tags);
+    	params.put("max_locations", max_locations);
+    	params.put("contract_length", contract_length);
+    	params.put("ref_id", ref_id);
+    	retval = this.doCurl("GET","/token/upgrade",params);
     } finally { 
     }
     return retval;
@@ -4391,6 +4433,28 @@
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
     	retval = this.doCurl("DELETE","/entity/group",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Add an entityserve document
+   *
+   *  @param entity_id - The id of the entity to create the entityserve event for
+   *  @param country - the ISO code of the country
+   *  @param event_type - The event type being recorded
+   *  @return - the data from the api
+  */
+  public String  putEntityserve(String entity_id,String country,String event_type) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("country", country);
+    	params.put("event_type", event_type);
+    	retval = this.doCurl("PUT","/entityserve",params);
     } finally { 
     }
     return retval;
