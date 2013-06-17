@@ -1838,6 +1838,30 @@
 
 
   /**
+   * Ring the person and verify their account
+   *
+   *  @param to - The phone number to verify
+   *  @param from - The phone number to call from
+   *  @param pin - The pin to verify the phone number with
+   *  @param language - The language to read the verification in
+   *  @return - the data from the api
+  */
+  public String  getToolsPhonecallVerify(String to,String from,String pin,String language) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("to", to);
+    	params.put("from", from);
+    	params.put("pin", pin);
+    	params.put("language", language);
+    	retval = this.doCurl("GET","/tools/phonecall/verify",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Given a spreadsheet id add a row
    *
    *  @param spreadsheet_key - The key of the spreadsheet to edit
@@ -2153,6 +2177,26 @@
     	params.put("locations_to_add", locations_to_add);
     	params.put("locations_to_remove", locations_to_remove);
     	retval = this.doCurl("POST","/entity/advertiser/location",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Get all advertisers that have been updated from a give date for a given reseller
+   *
+   *  @param from_date
+   *  @param country
+   *  @return - the data from the api
+  */
+  public String  getAdvertiserUpdated(String from_date,String country) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("from_date", from_date);
+    	params.put("country", country);
+    	retval = this.doCurl("GET","/advertiser/updated",params);
     } finally { 
     }
     return retval;
