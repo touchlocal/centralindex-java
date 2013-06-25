@@ -604,9 +604,11 @@
    *  @param nokia_country_code
    *  @param twilio_sms
    *  @param twilio_phone
+   *  @param currency_symbol - the symbol of this country's currency
+   *  @param currency_symbol_html - the html version of the symbol of this country's currency
    *  @return - the data from the api
   */
-  public String  postCountry(String country_id,String name,String synonyms,String continentName,String continent,String geonameId,String dbpediaURL,String freebaseURL,String population,String currencyCode,String languages,String areaInSqKm,String capital,String east,String west,String north,String south,String claimPrice,String claimMethods,String nokia_country_code,String twilio_sms,String twilio_phone) throws Exception { 
+  public String  postCountry(String country_id,String name,String synonyms,String continentName,String continent,String geonameId,String dbpediaURL,String freebaseURL,String population,String currencyCode,String languages,String areaInSqKm,String capital,String east,String west,String north,String south,String claimPrice,String claimMethods,String nokia_country_code,String twilio_sms,String twilio_phone,String currency_symbol,String currency_symbol_html) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -632,6 +634,8 @@
     	params.put("nokia_country_code", nokia_country_code);
     	params.put("twilio_sms", twilio_sms);
     	params.put("twilio_phone", twilio_phone);
+    	params.put("currency_symbol", currency_symbol);
+    	params.put("currency_symbol_html", currency_symbol_html);
     	retval = this.doCurl("POST","/country",params);
     } finally { 
     }
@@ -4261,9 +4265,11 @@
    *  @param api_url
    *  @param api_params
    *  @param active
+   *  @param reseller_masheryid
+   *  @param description
    *  @return - the data from the api
   */
-  public String  postTraction(String traction_id,String trigger_type,String action_type,String country,String email_addresses,String title,String body,String api_method,String api_url,String api_params,String active) throws Exception { 
+  public String  postTraction(String traction_id,String trigger_type,String action_type,String country,String email_addresses,String title,String body,String api_method,String api_url,String api_params,String active,String reseller_masheryid,String description) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4278,6 +4284,8 @@
     	params.put("api_url", api_url);
     	params.put("api_params", api_params);
     	params.put("active", active);
+    	params.put("reseller_masheryid", reseller_masheryid);
+    	params.put("description", description);
     	retval = this.doCurl("POST","/traction",params);
     } finally { 
     }
