@@ -4520,10 +4520,11 @@
    *  @param api_params
    *  @param active
    *  @param reseller_masheryid
+   *  @param publisher_masheryid
    *  @param description
    *  @return - the data from the api
   */
-  public String  postTraction(String traction_id,String trigger_type,String action_type,String country,String email_addresses,String title,String body,String api_method,String api_url,String api_params,String active,String reseller_masheryid,String description) throws Exception { 
+  public String  postTraction(String traction_id,String trigger_type,String action_type,String country,String email_addresses,String title,String body,String api_method,String api_url,String api_params,String active,String reseller_masheryid,String publisher_masheryid,String description) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4539,6 +4540,7 @@
     	params.put("api_params", api_params);
     	params.put("active", active);
     	params.put("reseller_masheryid", reseller_masheryid);
+    	params.put("publisher_masheryid", publisher_masheryid);
     	params.put("description", description);
     	retval = this.doCurl("POST","/traction",params);
     } finally { 
