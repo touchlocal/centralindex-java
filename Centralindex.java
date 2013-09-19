@@ -3877,13 +3877,15 @@
    * Perform the whole PTB process on the supplied entity
    *
    *  @param entity_id
+   *  @param destructive
    *  @return - the data from the api
   */
-  public String  getPtbAll(String entity_id) throws Exception { 
+  public String  getPtbAll(String entity_id,String destructive) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("destructive", destructive);
     	retval = this.doCurl("GET","/ptb/all",params);
     } finally { 
     }
@@ -3918,14 +3920,16 @@
    *
    *  @param entity_id
    *  @param module
+   *  @param destructive
    *  @return - the data from the api
   */
-  public String  getPtbModule(String entity_id,String module) throws Exception { 
+  public String  getPtbModule(String entity_id,String module,String destructive) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("module", module);
+    	params.put("destructive", destructive);
     	retval = this.doCurl("GET","/ptb/module",params);
     } finally { 
     }
