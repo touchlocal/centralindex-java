@@ -3350,14 +3350,16 @@
    *
    *  @param from_date
    *  @param to_date
+   *  @param country_id
    *  @return - the data from the api
   */
-  public String  getHeartbeatBy_date(String from_date,String to_date) throws Exception { 
+  public String  getHeartbeatBy_date(String from_date,String to_date,String country_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("from_date", from_date);
     	params.put("to_date", to_date);
+    	params.put("country_id", country_id);
     	retval = this.doCurl("GET","/heartbeat/by_date",params);
     } finally { 
     }
