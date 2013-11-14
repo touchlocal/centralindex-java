@@ -1,3 +1,4 @@
+    /**
     * Central Index
     *
     * The Central Index JAVA Library
@@ -490,7 +491,7 @@
    *  @param referrer_name
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name) throws Exception { 
+  public String  putBusiness(String name,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -517,6 +518,7 @@
     	params.put("do_not_display", do_not_display);
     	params.put("referrer_url", referrer_url);
     	params.put("referrer_name", referrer_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/business",params);
     } finally { 
     }
@@ -968,7 +970,7 @@
    *  @param our_data
    *  @return - the data from the api
   */
-  public String  putEntity(String type,String scope,String country,String trust,String our_data) throws Exception { 
+  public String  putEntity(String type,String scope,String country,String trust,String our_data,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -977,6 +979,7 @@
     	params.put("country", country);
     	params.put("trust", trust);
     	params.put("our_data", our_data);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/entity",params);
     } finally { 
     }
@@ -1010,13 +1013,14 @@
    *  @param add_referrer_name
    *  @return - the data from the api
   */
-  public String  postEntityAdd(String entity_id,String add_referrer_url,String add_referrer_name) throws Exception { 
+  public String  postEntityAdd(String entity_id,String add_referrer_url,String add_referrer_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("add_referrer_url", add_referrer_url);
     	params.put("add_referrer_name", add_referrer_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/add",params);
     } finally { 
     }
@@ -1031,12 +1035,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityAdvertiser(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityAdvertiser(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/advertiser",params);
     } finally { 
     }
@@ -1053,7 +1058,7 @@
    *  @param reseller_agent_id
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserCancel(String entity_id,String publisher_id,String reseller_ref,String reseller_agent_id) throws Exception { 
+  public String  postEntityAdvertiserCancel(String entity_id,String publisher_id,String reseller_ref,String reseller_agent_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1061,6 +1066,7 @@
     	params.put("publisher_id", publisher_id);
     	params.put("reseller_ref", reseller_ref);
     	params.put("reseller_agent_id", reseller_agent_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/cancel",params);
     } finally { 
     }
@@ -1084,7 +1090,7 @@
    *  @param publisher_id
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserCreate(String entity_id,String tags,String locations,String max_tags,String max_locations,String expiry_date,String is_national,String language,String reseller_ref,String reseller_agent_id,String publisher_id) throws Exception { 
+  public String  postEntityAdvertiserCreate(String entity_id,String tags,String locations,String max_tags,String max_locations,String expiry_date,String is_national,String language,String reseller_ref,String reseller_agent_id,String publisher_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1099,6 +1105,7 @@
     	params.put("reseller_ref", reseller_ref);
     	params.put("reseller_agent_id", reseller_agent_id);
     	params.put("publisher_id", publisher_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/create",params);
     } finally { 
     }
@@ -1115,7 +1122,7 @@
    *  @param locations_to_remove
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserLocation(String entity_id,String gen_id,String locations_to_add,String locations_to_remove) throws Exception { 
+  public String  postEntityAdvertiserLocation(String entity_id,String gen_id,String locations_to_add,String locations_to_remove,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1123,6 +1130,7 @@
     	params.put("gen_id", gen_id);
     	params.put("locations_to_add", locations_to_add);
     	params.put("locations_to_remove", locations_to_remove);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/location",params);
     } finally { 
     }
@@ -1140,7 +1148,7 @@
    *  @param reseller_agent_id
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserRenew(String entity_id,String expiry_date,String publisher_id,String reseller_ref,String reseller_agent_id) throws Exception { 
+  public String  postEntityAdvertiserRenew(String entity_id,String expiry_date,String publisher_id,String reseller_ref,String reseller_agent_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1149,6 +1157,7 @@
     	params.put("publisher_id", publisher_id);
     	params.put("reseller_ref", reseller_ref);
     	params.put("reseller_agent_id", reseller_agent_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/renew",params);
     } finally { 
     }
@@ -1166,7 +1175,7 @@
    *  @param tags_to_remove - The tags to remove
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserTag(String gen_id,String entity_id,String language,String tags_to_add,String tags_to_remove) throws Exception { 
+  public String  postEntityAdvertiserTag(String gen_id,String entity_id,String language,String tags_to_add,String tags_to_remove,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1175,6 +1184,7 @@
     	params.put("language", language);
     	params.put("tags_to_add", tags_to_add);
     	params.put("tags_to_remove", tags_to_remove);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/tag",params);
     } finally { 
     }
@@ -1197,7 +1207,7 @@
    *  @param publisher_id
    *  @return - the data from the api
   */
-  public String  postEntityAdvertiserUpsell(String entity_id,String tags,String locations,String extra_tags,String extra_locations,String is_national,String language,String reseller_ref,String reseller_agent_id,String publisher_id) throws Exception { 
+  public String  postEntityAdvertiserUpsell(String entity_id,String tags,String locations,String extra_tags,String extra_locations,String is_national,String language,String reseller_ref,String reseller_agent_id,String publisher_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1211,6 +1221,7 @@
     	params.put("reseller_ref", reseller_ref);
     	params.put("reseller_agent_id", reseller_agent_id);
     	params.put("publisher_id", publisher_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/advertiser/upsell",params);
     } finally { 
     }
@@ -1254,7 +1265,7 @@
    *  @param affiliate_logo
    *  @return - the data from the api
   */
-  public String  postEntityAffiliate_link(String entity_id,String affiliate_name,String affiliate_link,String affiliate_message,String affiliate_logo) throws Exception { 
+  public String  postEntityAffiliate_link(String entity_id,String affiliate_name,String affiliate_link,String affiliate_message,String affiliate_logo,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1263,6 +1274,7 @@
     	params.put("affiliate_link", affiliate_link);
     	params.put("affiliate_message", affiliate_message);
     	params.put("affiliate_logo", affiliate_logo);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/affiliate_link",params);
     } finally { 
     }
@@ -1277,12 +1289,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityAffiliate_link(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityAffiliate_link(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/affiliate_link",params);
     } finally { 
     }
@@ -1302,7 +1315,7 @@
    *  @param registered_company_number
    *  @return - the data from the api
   */
-  public String  postEntityBackground(String entity_id,String number_of_employees,String turnover,String net_profit,String vat_number,String duns_number,String registered_company_number) throws Exception { 
+  public String  postEntityBackground(String entity_id,String number_of_employees,String turnover,String net_profit,String vat_number,String duns_number,String registered_company_number,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1313,6 +1326,7 @@
     	params.put("vat_number", vat_number);
     	params.put("duns_number", duns_number);
     	params.put("registered_company_number", registered_company_number);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/background",params);
     } finally { 
     }
@@ -1326,11 +1340,12 @@
    *  @param filedata
    *  @return - the data from the api
   */
-  public String  postEntityBulkCsv(String filedata) throws Exception { 
+  public String  postEntityBulkCsv(String filedata,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("filedata", filedata);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/bulk/csv",params);
     } finally { 
     }
@@ -1362,11 +1377,12 @@
    *  @param data
    *  @return - the data from the api
   */
-  public String  postEntityBulkJson(String data) throws Exception { 
+  public String  postEntityBulkJson(String data,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("data", data);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/bulk/json",params);
     } finally { 
     }
@@ -1419,7 +1435,7 @@
    *  @param supplier_user_id - The user id to match
    *  @return - the data from the api
   */
-  public String  deleteEntityBy_supplier(String entity_id,String supplier_masheryid,String supplier_id,String supplier_user_id) throws Exception { 
+  public String  deleteEntityBy_supplier(String entity_id,String supplier_masheryid,String supplier_id,String supplier_user_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1427,6 +1443,7 @@
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("supplier_id", supplier_id);
     	params.put("supplier_user_id", supplier_user_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/by_supplier",params);
     } finally { 
     }
@@ -1478,13 +1495,14 @@
    *  @param category_type
    *  @return - the data from the api
   */
-  public String  postEntityCategory(String entity_id,String category_id,String category_type) throws Exception { 
+  public String  postEntityCategory(String entity_id,String category_id,String category_type,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("category_id", category_id);
     	params.put("category_type", category_type);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/category",params);
     } finally { 
     }
@@ -1499,12 +1517,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityCategory(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityCategory(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/category",params);
     } finally { 
     }
@@ -1542,7 +1561,7 @@
    *  @param referrer_name
    *  @return - the data from the api
   */
-  public String  postEntityClaim(String entity_id,String claimed_user_id,String claimed_date,String claim_method,String phone_number,String referrer_url,String referrer_name) throws Exception { 
+  public String  postEntityClaim(String entity_id,String claimed_user_id,String claimed_date,String claim_method,String phone_number,String referrer_url,String referrer_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1553,6 +1572,7 @@
     	params.put("phone_number", phone_number);
     	params.put("referrer_url", referrer_url);
     	params.put("referrer_name", referrer_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/claim",params);
     } finally { 
     }
@@ -1567,12 +1587,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityDescription(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityDescription(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/description",params);
     } finally { 
     }
@@ -1588,13 +1609,14 @@
    *  @param body
    *  @return - the data from the api
   */
-  public String  postEntityDescription(String entity_id,String headline,String body) throws Exception { 
+  public String  postEntityDescription(String entity_id,String headline,String body,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("headline", headline);
     	params.put("body", body);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/description",params);
     } finally { 
     }
@@ -1610,13 +1632,14 @@
    *  @param filedata
    *  @return - the data from the api
   */
-  public String  postEntityDocument(String entity_id,String name,String filedata) throws Exception { 
+  public String  postEntityDocument(String entity_id,String name,String filedata,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("name", name);
     	params.put("filedata", filedata);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/document",params);
     } finally { 
     }
@@ -1631,12 +1654,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityDocument(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityDocument(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/document",params);
     } finally { 
     }
@@ -1652,13 +1676,14 @@
    *  @param email_description
    *  @return - the data from the api
   */
-  public String  postEntityEmail(String entity_id,String email_address,String email_description) throws Exception { 
+  public String  postEntityEmail(String entity_id,String email_address,String email_description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("email_address", email_address);
     	params.put("email_description", email_description);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/email",params);
     } finally { 
     }
@@ -1673,12 +1698,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityEmail(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityEmail(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/email",params);
     } finally { 
     }
@@ -1693,12 +1719,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityEmployee(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityEmployee(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/employee",params);
     } finally { 
     }
@@ -1719,7 +1746,7 @@
    *  @param phone_number
    *  @return - the data from the api
   */
-  public String  postEntityEmployee(String entity_id,String title,String forename,String surname,String job_title,String description,String email,String phone_number) throws Exception { 
+  public String  postEntityEmployee(String entity_id,String title,String forename,String surname,String job_title,String description,String email,String phone_number,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1731,6 +1758,7 @@
     	params.put("description", description);
     	params.put("email", email);
     	params.put("phone_number", phone_number);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/employee",params);
     } finally { 
     }
@@ -1745,12 +1773,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityFax(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityFax(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/fax",params);
     } finally { 
     }
@@ -1766,13 +1795,14 @@
    *  @param description
    *  @return - the data from the api
   */
-  public String  postEntityFax(String entity_id,String number,String description) throws Exception { 
+  public String  postEntityFax(String entity_id,String number,String description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("number", number);
     	params.put("description", description);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/fax",params);
     } finally { 
     }
@@ -1789,7 +1819,7 @@
    *  @param accuracy
    *  @return - the data from the api
   */
-  public String  postEntityGeopoint(String entity_id,String longitude,String latitude,String accuracy) throws Exception { 
+  public String  postEntityGeopoint(String entity_id,String longitude,String latitude,String accuracy,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1797,6 +1827,7 @@
     	params.put("longitude", longitude);
     	params.put("latitude", latitude);
     	params.put("accuracy", accuracy);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/geopoint",params);
     } finally { 
     }
@@ -1811,12 +1842,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityGroup(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityGroup(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/group",params);
     } finally { 
     }
@@ -1831,12 +1863,13 @@
    *  @param group_id
    *  @return - the data from the api
   */
-  public String  postEntityGroup(String entity_id,String group_id) throws Exception { 
+  public String  postEntityGroup(String entity_id,String group_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("group_id", group_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/group",params);
     } finally { 
     }
@@ -1852,13 +1885,14 @@
    *  @param image_name
    *  @return - the data from the api
   */
-  public String  postEntityImage(String entity_id,String filedata,String image_name) throws Exception { 
+  public String  postEntityImage(String entity_id,String filedata,String image_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("filedata", filedata);
     	params.put("image_name", image_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/image",params);
     } finally { 
     }
@@ -1873,12 +1907,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityImage(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityImage(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/image",params);
     } finally { 
     }
@@ -1902,7 +1937,7 @@
    *  @param address_type
    *  @return - the data from the api
   */
-  public String  postEntityInvoice_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String address_type) throws Exception { 
+  public String  postEntityInvoice_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String address_type,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -1917,6 +1952,7 @@
     	params.put("province", province);
     	params.put("postcode", postcode);
     	params.put("address_type", address_type);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/invoice_address",params);
     } finally { 
     }
@@ -1930,11 +1966,12 @@
    *  @param entity_id
    *  @return - the data from the api
   */
-  public String  deleteEntityInvoice_address(String entity_id) throws Exception { 
+  public String  deleteEntityInvoice_address(String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/invoice_address",params);
     } finally { 
     }
@@ -1950,13 +1987,14 @@
    *  @param body
    *  @return - the data from the api
   */
-  public String  postEntityList(String entity_id,String headline,String body) throws Exception { 
+  public String  postEntityList(String entity_id,String headline,String body,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("headline", headline);
     	params.put("body", body);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/list",params);
     } finally { 
     }
@@ -1971,12 +2009,13 @@
    *  @param entity_id
    *  @return - the data from the api
   */
-  public String  deleteEntityList(String gen_id,String entity_id) throws Exception { 
+  public String  deleteEntityList(String gen_id,String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("gen_id", gen_id);
     	params.put("entity_id", entity_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/list",params);
     } finally { 
     }
@@ -1991,12 +2030,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityLogo(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityLogo(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/logo",params);
     } finally { 
     }
@@ -2012,13 +2052,14 @@
    *  @param logo_name
    *  @return - the data from the api
   */
-  public String  postEntityLogo(String entity_id,String filedata,String logo_name) throws Exception { 
+  public String  postEntityLogo(String entity_id,String filedata,String logo_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("filedata", filedata);
     	params.put("logo_name", logo_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/logo",params);
     } finally { 
     }
@@ -2037,7 +2078,7 @@
    *  @param uncontribute_supplierid - Do we want to uncontribute any data for a supplier_id?
    *  @return - the data from the api
   */
-  public String  postEntityMerge(String from,String to,String override_trust,String uncontribute_masheryid,String uncontribute_userid,String uncontribute_supplierid) throws Exception { 
+  public String  postEntityMerge(String from,String to,String override_trust,String uncontribute_masheryid,String uncontribute_userid,String uncontribute_supplierid,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2047,6 +2088,7 @@
     	params.put("uncontribute_masheryid", uncontribute_masheryid);
     	params.put("uncontribute_userid", uncontribute_userid);
     	params.put("uncontribute_supplierid", uncontribute_supplierid);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/merge",params);
     } finally { 
     }
@@ -2084,13 +2126,14 @@
    *  @param formal_name
    *  @return - the data from the api
   */
-  public String  postEntityName(String entity_id,String name,String formal_name) throws Exception { 
+  public String  postEntityName(String entity_id,String name,String formal_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("name", name);
     	params.put("formal_name", formal_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/name",params);
     } finally { 
     }
@@ -2113,7 +2156,7 @@
    *  @param closed_public_holidays - whether the entity is closed on public holidays
    *  @return - the data from the api
   */
-  public String  postEntityOpening_times(String entity_id,String monday,String tuesday,String wednesday,String thursday,String friday,String saturday,String sunday,String closed,String closed_public_holidays) throws Exception { 
+  public String  postEntityOpening_times(String entity_id,String monday,String tuesday,String wednesday,String thursday,String friday,String saturday,String sunday,String closed,String closed_public_holidays,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2127,6 +2170,7 @@
     	params.put("sunday", sunday);
     	params.put("closed", closed);
     	params.put("closed_public_holidays", closed_public_holidays);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/opening_times",params);
     } finally { 
     }
@@ -2140,11 +2184,12 @@
    *  @param entity_id - The id of the entity to edit
    *  @return - the data from the api
   */
-  public String  deleteEntityOpening_times(String entity_id) throws Exception { 
+  public String  deleteEntityOpening_times(String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/opening_times",params);
     } finally { 
     }
@@ -2159,12 +2204,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityPhone(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityPhone(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/phone",params);
     } finally { 
     }
@@ -2180,13 +2226,14 @@
    *  @param description
    *  @return - the data from the api
   */
-  public String  postEntityPhone(String entity_id,String number,String description) throws Exception { 
+  public String  postEntityPhone(String entity_id,String number,String description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("number", number);
     	params.put("description", description);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/phone",params);
     } finally { 
     }
@@ -2211,7 +2258,7 @@
    *  @param do_not_display
    *  @return - the data from the api
   */
-  public String  postEntityPostal_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String address_type,String do_not_display) throws Exception { 
+  public String  postEntityPostal_address(String entity_id,String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String address_type,String do_not_display,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2227,6 +2274,7 @@
     	params.put("postcode", postcode);
     	params.put("address_type", address_type);
     	params.put("do_not_display", do_not_display);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/postal_address",params);
     } finally { 
     }
@@ -2546,7 +2594,7 @@
    *  @param content - The content of the email
    *  @return - the data from the api
   */
-  public String  postEntitySend_email(String entity_id,String gen_id,String from_email,String subject,String content) throws Exception { 
+  public String  postEntitySend_email(String entity_id,String gen_id,String from_email,String subject,String content,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2555,6 +2603,7 @@
     	params.put("from_email", from_email);
     	params.put("subject", subject);
     	params.put("content", content);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/send_email",params);
     } finally { 
     }
@@ -2570,13 +2619,14 @@
    *  @param website_url
    *  @return - the data from the api
   */
-  public String  postEntitySocialmedia(String entity_id,String type,String website_url) throws Exception { 
+  public String  postEntitySocialmedia(String entity_id,String type,String website_url,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("type", type);
     	params.put("website_url", website_url);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/socialmedia",params);
     } finally { 
     }
@@ -2591,12 +2641,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntitySocialmedia(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntitySocialmedia(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/socialmedia",params);
     } finally { 
     }
@@ -2617,7 +2668,7 @@
    *  @param image_url
    *  @return - the data from the api
   */
-  public String  postEntitySpecial_offer(String entity_id,String title,String description,String terms,String start_date,String expiry_date,String url,String image_url) throws Exception { 
+  public String  postEntitySpecial_offer(String entity_id,String title,String description,String terms,String start_date,String expiry_date,String url,String image_url,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2629,6 +2680,7 @@
     	params.put("expiry_date", expiry_date);
     	params.put("url", url);
     	params.put("image_url", image_url);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/special_offer",params);
     } finally { 
     }
@@ -2643,12 +2695,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntitySpecial_offer(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntitySpecial_offer(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/special_offer",params);
     } finally { 
     }
@@ -2665,7 +2718,7 @@
    *  @param inactive_description
    *  @return - the data from the api
   */
-  public String  postEntityStatus(String entity_id,String status,String inactive_reason,String inactive_description) throws Exception { 
+  public String  postEntityStatus(String entity_id,String status,String inactive_reason,String inactive_description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2673,6 +2726,7 @@
     	params.put("status", status);
     	params.put("inactive_reason", inactive_reason);
     	params.put("inactive_description", inactive_description);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/status",params);
     } finally { 
     }
@@ -2688,13 +2742,14 @@
    *  @param language
    *  @return - the data from the api
   */
-  public String  postEntityTag(String entity_id,String tag,String language) throws Exception { 
+  public String  postEntityTag(String entity_id,String tag,String language,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("tag", tag);
     	params.put("language", language);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/tag",params);
     } finally { 
     }
@@ -2709,12 +2764,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityTag(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityTag(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/tag",params);
     } finally { 
     }
@@ -2732,7 +2788,7 @@
    *  @param testifier_name
    *  @return - the data from the api
   */
-  public String  postEntityTestimonial(String entity_id,String title,String text,String date,String testifier_name) throws Exception { 
+  public String  postEntityTestimonial(String entity_id,String title,String text,String date,String testifier_name,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2741,6 +2797,7 @@
     	params.put("text", text);
     	params.put("date", date);
     	params.put("testifier_name", testifier_name);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/testimonial",params);
     } finally { 
     }
@@ -2755,12 +2812,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityTestimonial(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityTestimonial(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/testimonial",params);
     } finally { 
     }
@@ -2800,13 +2858,14 @@
    *  @param supplier_id
    *  @return - the data from the api
   */
-  public String  postEntityUnmerge(String entity_id,String supplier_masheryid,String supplier_id) throws Exception { 
+  public String  postEntityUnmerge(String entity_id,String supplier_masheryid,String supplier_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("supplier_id", supplier_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/unmerge",params);
     } finally { 
     }
@@ -2821,12 +2880,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityVideo(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityVideo(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/video",params);
     } finally { 
     }
@@ -2841,12 +2901,13 @@
    *  @param embed_code
    *  @return - the data from the api
   */
-  public String  postEntityVideoYoutube(String entity_id,String embed_code) throws Exception { 
+  public String  postEntityVideoYoutube(String entity_id,String embed_code,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("embed_code", embed_code);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/video/youtube",params);
     } finally { 
     }
@@ -2861,12 +2922,13 @@
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityWebsite(String entity_id,String gen_id) throws Exception { 
+  public String  deleteEntityWebsite(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/website",params);
     } finally { 
     }
@@ -2883,7 +2945,7 @@
    *  @param website_description
    *  @return - the data from the api
   */
-  public String  postEntityWebsite(String entity_id,String website_url,String display_url,String website_description) throws Exception { 
+  public String  postEntityWebsite(String entity_id,String website_url,String display_url,String website_description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2891,6 +2953,7 @@
     	params.put("website_url", website_url);
     	params.put("display_url", display_url);
     	params.put("website_description", website_description);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/website",params);
     } finally { 
     }
@@ -3395,11 +3458,12 @@
    *  @param data
    *  @return - the data from the api
   */
-  public String  postGroupBulk_update(String group_id,String data) throws Exception { 
+  public String  postGroupBulk_update(String group_id,String _user_id,String data) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("group_id", group_id);
+    	params.put("_user_id", _user_id);
     	params.put("data", data);
     	retval = this.doCurl("POST","/group/bulk_update",params);
     } finally { 
@@ -3495,12 +3559,13 @@
    *  @param category_type
    *  @return - the data from the api
   */
-  public String  postIngest_job(String description,String category_type) throws Exception { 
+  public String  postIngest_job(String description,String category_type,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("description", description);
     	params.put("category_type", category_type);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/ingest_job",params);
     } finally { 
     }
@@ -3925,12 +3990,13 @@
    *  @param data - The data to store
    *  @return - the data from the api
   */
-  public String  putPrivate_object(String entity_id,String data) throws Exception { 
+  public String  putPrivate_object(String entity_id,String data,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("data", data);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/private_object",params);
     } finally { 
     }
@@ -4399,7 +4465,7 @@
    *  @param reseller_masheryid
    *  @return - the data from the api
   */
-  public String  postSales_logSyndication(String action_type,String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String reseller_masheryid) throws Exception { 
+  public String  postSales_logSyndication(String action_type,String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String reseller_masheryid,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4413,6 +4479,7 @@
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("country", country);
     	params.put("reseller_masheryid", reseller_masheryid);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/sales_log/syndication",params);
     } finally { 
     }
@@ -4518,7 +4585,7 @@
    *  @param reseller_masheryid
    *  @return - the data from the api
   */
-  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String reseller_masheryid) throws Exception { 
+  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String reseller_masheryid,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4531,6 +4598,7 @@
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("country", country);
     	params.put("reseller_masheryid", reseller_masheryid);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/syndication/create",params);
     } finally { 
     }
@@ -5522,7 +5590,7 @@
    *  @param admin_upgrader
    *  @return - the data from the api
   */
-  public String  postUser(String email,String user_id,String first_name,String last_name,String active,String trust,String creation_date,String user_type,String social_network,String social_network_id,String reseller_admin_masheryid,String group_id,String admin_upgrader) throws Exception { 
+  public String  postUser(String email,String user_id,String first_name,String last_name,String active,String trust,String creation_date,String user_type,String social_network,String social_network_id,String reseller_admin_masheryid,String group_id,String admin_upgrader,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -5539,6 +5607,7 @@
     	params.put("reseller_admin_masheryid", reseller_admin_masheryid);
     	params.put("group_id", group_id);
     	params.put("admin_upgrader", admin_upgrader);
+    	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/user",params);
     } finally { 
     }
