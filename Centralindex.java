@@ -75,7 +75,10 @@
 
             Set<String> keys = params.keySet();	
             for(String key: keys){
-	            nvps.add(new BasicNameValuePair(key, (String)params.get(key)));
+              String val = new String((String)params.get(key));
+              if (val.length() > 0) {
+                nvps.add(new BasicNameValuePair(key, (String)params.get(key)));
+              }
             }
             
             
@@ -314,7 +317,7 @@
    *
    *  @param entity_id - The entity to pull
    *  @param entity_name - The entity name this entry refers to
-   *  @param type - The activity type
+   *  @param type - The activity type. add, claim, special offer, image, video, description, testimonial
    *  @param country - The country for the activity
    *  @param longitude - The longitude for teh activity
    *  @param latitude - The latitude for teh activity
@@ -816,7 +819,6 @@
    *  @param south
    *  @param claimPrice
    *  @param claimMethods
-   *  @param nokia_country_code
    *  @param twilio_sms
    *  @param twilio_phone
    *  @param twilio_voice
@@ -830,7 +832,7 @@
    *  @param iso_3166_numeric
    *  @return - the data from the api
   */
-  public String  postCountry(String country_id,String name,String synonyms,String continentName,String continent,String geonameId,String dbpediaURL,String freebaseURL,String population,String currencyCode,String languages,String areaInSqKm,String capital,String east,String west,String north,String south,String claimPrice,String claimMethods,String nokia_country_code,String twilio_sms,String twilio_phone,String twilio_voice,String currency_symbol,String currency_symbol_html,String postcodeLookupActive,String addressFields,String addressMatching,String dateFormat,String iso_3166_alpha_3,String iso_3166_numeric) throws Exception { 
+  public String  postCountry(String country_id,String name,String synonyms,String continentName,String continent,String geonameId,String dbpediaURL,String freebaseURL,String population,String currencyCode,String languages,String areaInSqKm,String capital,String east,String west,String north,String south,String claimPrice,String claimMethods,String twilio_sms,String twilio_phone,String twilio_voice,String currency_symbol,String currency_symbol_html,String postcodeLookupActive,String addressFields,String addressMatching,String dateFormat,String iso_3166_alpha_3,String iso_3166_numeric) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -853,7 +855,6 @@
     	params.put("south", south);
     	params.put("claimPrice", claimPrice);
     	params.put("claimMethods", claimMethods);
-    	params.put("nokia_country_code", nokia_country_code);
     	params.put("twilio_sms", twilio_sms);
     	params.put("twilio_phone", twilio_phone);
     	params.put("twilio_voice", twilio_voice);
@@ -4539,9 +4540,11 @@
    *  @param gen_id - The gen_id for the item being reported
    *  @param signal_type - The signal that is to be reported e.g. wrong
    *  @param data_type - The type of data being reported
+   *  @param inactive_reason - The reason for making the entity inactive
+   *  @param inactive_description - A description to accompany the inactive reasoning
    *  @return - the data from the api
   */
-  public String  postSignal(String entity_id,String country,String gen_id,String signal_type,String data_type) throws Exception { 
+  public String  postSignal(String entity_id,String country,String gen_id,String signal_type,String data_type,String inactive_reason,String inactive_description) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4550,6 +4553,8 @@
     	params.put("gen_id", gen_id);
     	params.put("signal_type", signal_type);
     	params.put("data_type", data_type);
+    	params.put("inactive_reason", inactive_reason);
+    	params.put("inactive_description", inactive_description);
     	retval = this.doCurl("POST","/signal",params);
     } finally { 
     }
