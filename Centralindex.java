@@ -285,16 +285,17 @@
   /**
    * Get the activity from the collection
    *
-   *  @param type - The activity type
+   *  @param type - The activity type: add, claim, special offer, image, video, description, testimonial
    *  @param country - The country to filter by
    *  @param latitude_1 - The latitude_1 to filter by
    *  @param longitude_1 - The longitude_1 to filter by
    *  @param latitude_2 - The latitude_2 to filter by
    *  @param longitude_2 - The longitude_2 to filter by
    *  @param number_results - The number_results to filter by
+   *  @param unique_action - Return only the most recent instance of this action?
    *  @return - the data from the api
   */
-  public String  getActivity_stream(String type,String country,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String number_results) throws Exception { 
+  public String  getActivity_stream(String type,String country,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String number_results,String unique_action) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -305,6 +306,7 @@
     	params.put("latitude_2", latitude_2);
     	params.put("longitude_2", longitude_2);
     	params.put("number_results", number_results);
+    	params.put("unique_action", unique_action);
     	retval = this.doCurl("GET","/activity_stream",params);
     } finally { 
     }
@@ -317,7 +319,7 @@
    *
    *  @param entity_id - The entity to pull
    *  @param entity_name - The entity name this entry refers to
-   *  @param type - The activity type. add, claim, special offer, image, video, description, testimonial
+   *  @param type - The activity type.
    *  @param country - The country for the activity
    *  @param longitude - The longitude for teh activity
    *  @param latitude - The latitude for teh activity
@@ -3083,9 +3085,10 @@
    *  @param denyIndexing - Whether to noindex a flatpack
    *  @param contextRadius - allows you to set a catchment area around the contextLocationId in miles for use when displaying the activity stream module
    *  @param activityStream - allows you to set the activity to be displayed in the activity stream
+   *  @param activityStreamSize - Sets the number of items to show within the activity stream.
    *  @return - the data from the api
   */
-  public String  postFlatpack(String flatpack_id,String domainName,String stub,String flatpackName,String less,String language,String country,String mapsType,String mapKey,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String head,String adblock,String bodyTop,String bodyBottom,String header_menu,String header_menu_bottom,String footer_menu,String bdpTitle,String bdpDescription,String bdpAds,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String serpAds,String serpTitleNoWhat,String serpDescriptionNoWhat,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl,String copyright,String advertUpgradeActive,String advertUpgradePrice,String advertUpgradeMaxTags,String advertUpgradeMaxLocations,String advertUpgradeContractLength,String advertUpgradeRefId,String phoneReveal,String loginLinkText,String contextLocationId,String addBusinessButtonPosition,String denyIndexing,String contextRadius,String activityStream) throws Exception { 
+  public String  postFlatpack(String flatpack_id,String domainName,String stub,String flatpackName,String less,String language,String country,String mapsType,String mapKey,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String head,String adblock,String bodyTop,String bodyBottom,String header_menu,String header_menu_bottom,String footer_menu,String bdpTitle,String bdpDescription,String bdpAds,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String serpAds,String serpTitleNoWhat,String serpDescriptionNoWhat,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl,String copyright,String advertUpgradeActive,String advertUpgradePrice,String advertUpgradeMaxTags,String advertUpgradeMaxLocations,String advertUpgradeContractLength,String advertUpgradeRefId,String phoneReveal,String loginLinkText,String contextLocationId,String addBusinessButtonPosition,String denyIndexing,String contextRadius,String activityStream,String activityStreamSize) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3149,6 +3152,7 @@
     	params.put("denyIndexing", denyIndexing);
     	params.put("contextRadius", contextRadius);
     	params.put("activityStream", activityStream);
+    	params.put("activityStreamSize", activityStreamSize);
     	retval = this.doCurl("POST","/flatpack",params);
     } finally { 
     }
