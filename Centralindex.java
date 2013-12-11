@@ -4635,10 +4635,9 @@
    *  @param seed_masheryid
    *  @param supplier_masheryid
    *  @param country
-   *  @param reseller_masheryid
    *  @return - the data from the api
   */
-  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String reseller_masheryid,String _user_id) throws Exception { 
+  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4650,7 +4649,6 @@
     	params.put("seed_masheryid", seed_masheryid);
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("country", country);
-    	params.put("reseller_masheryid", reseller_masheryid);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/syndication/create",params);
     } finally { 
