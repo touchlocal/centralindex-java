@@ -756,28 +756,6 @@
 
 
   /**
-   * With a known category id, an synonym object can be added.
-   *
-   *  @param category_id
-   *  @param synonym
-   *  @param language
-   *  @return - the data from the api
-  */
-  public String  postCategorySynonym(String category_id,String synonym,String language) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("category_id", category_id);
-    	params.put("synonym", synonym);
-    	params.put("language", language);
-    	retval = this.doCurl("POST","/category/synonym",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known category id, a synonyms object can be removed.
    *
    *  @param category_id
@@ -793,6 +771,28 @@
     	params.put("synonym", synonym);
     	params.put("language", language);
     	retval = this.doCurl("DELETE","/category/synonym",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * With a known category id, an synonym object can be added.
+   *
+   *  @param category_id
+   *  @param synonym
+   *  @param language
+   *  @return - the data from the api
+  */
+  public String  postCategorySynonym(String category_id,String synonym,String language) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("category_id", category_id);
+    	params.put("synonym", synonym);
+    	params.put("language", language);
+    	retval = this.doCurl("POST","/category/synonym",params);
     } finally { 
     }
     return retval;
@@ -964,24 +964,6 @@
 
 
   /**
-   * Allows a whole entity to be pulled from the datastore by its unique id
-   *
-   *  @param entity_id - The unique entity ID e.g. 379236608286720
-   *  @return - the data from the api
-  */
-  public String  getEntity(String entity_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	retval = this.doCurl("GET","/entity",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * This entity isn't really supported anymore. You probably want PUT /business. Only to be used for testing.
    *
    *  @param type
@@ -1002,6 +984,24 @@
     	params.put("our_data", our_data);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/entity",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a whole entity to be pulled from the datastore by its unique id
+   *
+   *  @param entity_id - The unique entity ID e.g. 379236608286720
+   *  @return - the data from the api
+  */
+  public String  getEntity(String entity_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	retval = this.doCurl("GET","/entity",params);
     } finally { 
     }
     return retval;
@@ -1770,27 +1770,6 @@
 
 
   /**
-   * Allows a fax object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityFax(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/fax",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, an fax object can be added.
    *
    *  @param entity_id
@@ -1807,6 +1786,27 @@
     	params.put("description", description);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/fax",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a fax object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityFax(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/fax",params);
     } finally { 
     }
     return retval;
@@ -1839,27 +1839,6 @@
 
 
   /**
-   * Allows a group object to be removed from an entities group members
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityGroup(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/group",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a group  can be added to group members.
    *
    *  @param entity_id
@@ -1881,20 +1860,20 @@
 
 
   /**
-   * Allows a image object to be reduced in confidence
+   * Allows a group object to be removed from an entities group members
    *
    *  @param entity_id
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityImage(String entity_id,String gen_id,String _user_id) throws Exception { 
+  public String  deleteEntityGroup(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/image",params);
+    	retval = this.doCurl("DELETE","/entity/group",params);
     } finally { 
     }
     return retval;
@@ -1925,18 +1904,20 @@
 
 
   /**
-   * With a known entity id and a known invoice_address ID, we can delete a specific invoice_address object from an enitity.
+   * Allows a image object to be reduced in confidence
    *
    *  @param entity_id
+   *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityInvoice_address(String entity_id,String _user_id) throws Exception { 
+  public String  deleteEntityImage(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/invoice_address",params);
+    	retval = this.doCurl("DELETE","/entity/image",params);
     } finally { 
     }
     return retval;
@@ -1983,20 +1964,18 @@
 
 
   /**
-   * Allows a list description object to be reduced in confidence
+   * With a known entity id and a known invoice_address ID, we can delete a specific invoice_address object from an enitity.
    *
-   *  @param gen_id
    *  @param entity_id
    *  @return - the data from the api
   */
-  public String  deleteEntityList(String gen_id,String entity_id,String _user_id) throws Exception { 
+  public String  deleteEntityInvoice_address(String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
-    	params.put("gen_id", gen_id);
     	params.put("entity_id", entity_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/list",params);
+    	retval = this.doCurl("DELETE","/entity/invoice_address",params);
     } finally { 
     }
     return retval;
@@ -2027,20 +2006,20 @@
 
 
   /**
-   * Allows a phone object to be reduced in confidence
+   * Allows a list description object to be reduced in confidence
    *
-   *  @param entity_id
    *  @param gen_id
+   *  @param entity_id
    *  @return - the data from the api
   */
-  public String  deleteEntityLogo(String entity_id,String gen_id,String _user_id) throws Exception { 
+  public String  deleteEntityList(String gen_id,String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
-    	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
+    	params.put("entity_id", entity_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/logo",params);
+    	retval = this.doCurl("DELETE","/entity/list",params);
     } finally { 
     }
     return retval;
@@ -2064,6 +2043,27 @@
     	params.put("logo_name", logo_name);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/logo",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a phone object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityLogo(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/logo",params);
     } finally { 
     }
     return retval;
@@ -2205,16 +2205,16 @@
    *
    *  @param entity_id
    *  @param number
-   *  @param description
+   *  @param trackable
    *  @return - the data from the api
   */
-  public String  postEntityPhone(String entity_id,String number,String description,String _user_id) throws Exception { 
+  public String  postEntityPhone(String entity_id,String number,String trackable,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("number", number);
-    	params.put("description", description);
+    	params.put("trackable", trackable);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/phone",params);
     } finally { 
@@ -2489,6 +2489,34 @@
     	params.put("latitude", latitude);
     	params.put("longitude", longitude);
     	retval = this.doCurl("GET","/entity/search/what/bylocation",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Search for matching entities, ordered by nearness
+   *
+   *  @param what - What to get results for. E.g. Plumber e.g. plumber
+   *  @param per_page - Number of results returned per page
+   *  @param page - Which page number to retrieve
+   *  @param language - An ISO compatible language code, E.g. en
+   *  @param latitude - The decimal latitude of the centre point of the search
+   *  @param longitude - The decimal longitude of the centre point of the search
+   *  @return - the data from the api
+  */
+  public String  getEntitySearchWhatBynearest(String what,String per_page,String page,String language,String latitude,String longitude) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("what", what);
+    	params.put("per_page", per_page);
+    	params.put("page", page);
+    	params.put("language", language);
+    	params.put("latitude", latitude);
+    	params.put("longitude", longitude);
+    	retval = this.doCurl("GET","/entity/search/what/bynearest",params);
     } finally { 
     }
     return retval;
