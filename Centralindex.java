@@ -3462,12 +3462,6 @@
    *  @param twitterUrl - Twitter link
    *  @param facebookUrl - Facebook link
    *  @param copyright - Copyright message
-   *  @param advertUpgradeActive - whether upgrade message is displayed on this Flatpack
-   *  @param advertUpgradePrice - the cost of upgrading
-   *  @param advertUpgradeMaxTags - the number of tags upgrading gives you
-   *  @param advertUpgradeMaxLocations - the number of locations upgrading gives you
-   *  @param advertUpgradeContractLength - the length of the contract (days)
-   *  @param advertUpgradeRefId - a unique reference for the upgrade
    *  @param phoneReveal - record phone number reveal
    *  @param loginLinkText - the link text for the Login link
    *  @param contextLocationId - The location ID to use as the context for searches on this flatpack
@@ -3479,7 +3473,7 @@
    *  @param products - A Collection of Central Index products the flatpack is allowed to sell
    *  @return - the data from the api
   */
-  public String  postFlatpack(String flatpack_id,String domainName,String stub,String flatpackName,String less,String language,String country,String mapsType,String mapKey,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String head,String adblock,String bodyTop,String bodyBottom,String header_menu,String header_menu_bottom,String footer_menu,String bdpTitle,String bdpDescription,String bdpAds,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String serpAds,String serpTitleNoWhat,String serpDescriptionNoWhat,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl,String copyright,String advertUpgradeActive,String advertUpgradePrice,String advertUpgradeMaxTags,String advertUpgradeMaxLocations,String advertUpgradeContractLength,String advertUpgradeRefId,String phoneReveal,String loginLinkText,String contextLocationId,String addBusinessButtonPosition,String denyIndexing,String contextRadius,String activityStream,String activityStreamSize,String products) throws Exception { 
+  public String  postFlatpack(String flatpack_id,String domainName,String stub,String flatpackName,String less,String language,String country,String mapsType,String mapKey,String searchFormShowOn,String searchFormShowKeywordsBox,String searchFormShowLocationBox,String searchFormKeywordsAutoComplete,String searchFormLocationsAutoComplete,String searchFormDefaultLocation,String searchFormPlaceholderKeywords,String searchFormPlaceholderLocation,String searchFormKeywordsLabel,String searchFormLocationLabel,String cannedLinksHeader,String homepageTitle,String homepageDescription,String homepageIntroTitle,String homepageIntroText,String head,String adblock,String bodyTop,String bodyBottom,String header_menu,String header_menu_bottom,String footer_menu,String bdpTitle,String bdpDescription,String bdpAds,String serpTitle,String serpDescription,String serpNumberResults,String serpNumberAdverts,String serpAds,String serpTitleNoWhat,String serpDescriptionNoWhat,String cookiePolicyUrl,String cookiePolicyNotice,String addBusinessButtonText,String twitterUrl,String facebookUrl,String copyright,String phoneReveal,String loginLinkText,String contextLocationId,String addBusinessButtonPosition,String denyIndexing,String contextRadius,String activityStream,String activityStreamSize,String products) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3530,12 +3524,6 @@
     	params.put("twitterUrl", twitterUrl);
     	params.put("facebookUrl", facebookUrl);
     	params.put("copyright", copyright);
-    	params.put("advertUpgradeActive", advertUpgradeActive);
-    	params.put("advertUpgradePrice", advertUpgradePrice);
-    	params.put("advertUpgradeMaxTags", advertUpgradeMaxTags);
-    	params.put("advertUpgradeMaxLocations", advertUpgradeMaxLocations);
-    	params.put("advertUpgradeContractLength", advertUpgradeContractLength);
-    	params.put("advertUpgradeRefId", advertUpgradeRefId);
     	params.put("phoneReveal", phoneReveal);
     	params.put("loginLinkText", loginLinkText);
     	params.put("contextLocationId", contextLocationId);
@@ -3705,6 +3693,26 @@
 
 
   /**
+   * Remove a canned link to an existing flatpack site.
+   *
+   *  @param flatpack_id - the id of the flatpack to delete
+   *  @param gen_id - the id of the canned link to remove
+   *  @return - the data from the api
+  */
+  public String  deleteFlatpackLink(String flatpack_id,String gen_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("flatpack_id", flatpack_id);
+    	params.put("gen_id", gen_id);
+    	retval = this.doCurl("DELETE","/flatpack/link",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Add a canned link to an existing flatpack site.
    *
    *  @param flatpack_id - the id of the flatpack to delete
@@ -3722,26 +3730,6 @@
     	params.put("location", location);
     	params.put("linkText", linkText);
     	retval = this.doCurl("POST","/flatpack/link",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Remove a canned link to an existing flatpack site.
-   *
-   *  @param flatpack_id - the id of the flatpack to delete
-   *  @param gen_id - the id of the canned link to remove
-   *  @return - the data from the api
-  */
-  public String  deleteFlatpackLink(String flatpack_id,String gen_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("flatpack_id", flatpack_id);
-    	params.put("gen_id", gen_id);
-    	retval = this.doCurl("DELETE","/flatpack/link",params);
     } finally { 
     }
     return retval;
@@ -3807,24 +3795,6 @@
 
 
   /**
-   * Delete a group with a specified group_id
-   *
-   *  @param group_id
-   *  @return - the data from the api
-  */
-  public String  deleteGroup(String group_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("group_id", group_id);
-    	retval = this.doCurl("DELETE","/group",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Returns group that matches a given group id
    *
    *  @param group_id
@@ -3836,6 +3806,24 @@
      try { 
     	params.put("group_id", group_id);
     	retval = this.doCurl("GET","/group",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Delete a group with a specified group_id
+   *
+   *  @param group_id
+   *  @return - the data from the api
+  */
+  public String  deleteGroup(String group_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("group_id", group_id);
+    	retval = this.doCurl("DELETE","/group",params);
     } finally { 
     }
     return retval;
@@ -4010,6 +3998,24 @@
 
 
   /**
+   * Get an ingest job from the collection
+   *
+   *  @param job_id
+   *  @return - the data from the api
+  */
+  public String  getIngest_job(String job_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("job_id", job_id);
+    	retval = this.doCurl("GET","/ingest_job",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Add a ingest job to the collection
    *
    *  @param description
@@ -4024,24 +4030,6 @@
     	params.put("category_type", category_type);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/ingest_job",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Get an ingest job from the collection
-   *
-   *  @param job_id
-   *  @return - the data from the api
-  */
-  public String  getIngest_job(String job_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("job_id", job_id);
-    	retval = this.doCurl("GET","/ingest_job",params);
     } finally { 
     }
     return retval;
@@ -4086,6 +4074,24 @@
      try { 
     	params.put("flush", flush);
     	retval = this.doCurl("GET","/ingest_queue",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Read a location with the supplied ID in the locations reference database.
+   *
+   *  @param location_id
+   *  @return - the data from the api
+  */
+  public String  getLocation(String location_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("location_id", location_id);
+    	retval = this.doCurl("GET","/location",params);
     } finally { 
     }
     return retval;
@@ -4144,24 +4150,6 @@
     	params.put("searchable_id", searchable_id);
     	params.put("searchable_ids", searchable_ids);
     	retval = this.doCurl("POST","/location",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Read a location with the supplied ID in the locations reference database.
-   *
-   *  @param location_id
-   *  @return - the data from the api
-  */
-  public String  getLocation(String location_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("location_id", location_id);
-    	retval = this.doCurl("GET","/location",params);
     } finally { 
     }
     return retval;
@@ -4499,24 +4487,6 @@
 
 
   /**
-   * Allows a private object to be removed
-   *
-   *  @param private_object_id - The id of the private object to remove
-   *  @return - the data from the api
-  */
-  public String  deletePrivate_object(String private_object_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("private_object_id", private_object_id);
-    	retval = this.doCurl("DELETE","/private_object",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a private object can be added.
    *
    *  @param entity_id - The entity to associate the private object with
@@ -4531,6 +4501,24 @@
     	params.put("data", data);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/private_object",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a private object to be removed
+   *
+   *  @param private_object_id - The id of the private object to remove
+   *  @return - the data from the api
+  */
+  public String  deletePrivate_object(String private_object_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("private_object_id", private_object_id);
+    	retval = this.doCurl("DELETE","/private_object",params);
     } finally { 
     }
     return retval;
@@ -4808,6 +4796,32 @@
 
 
   /**
+   * Update/Add a publisher
+   *
+   *  @param publisher_id
+   *  @param country
+   *  @param name
+   *  @param description
+   *  @param active
+   *  @return - the data from the api
+  */
+  public String  postPublisher(String publisher_id,String country,String name,String description,String active) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("publisher_id", publisher_id);
+    	params.put("country", country);
+    	params.put("name", name);
+    	params.put("description", description);
+    	params.put("active", active);
+    	retval = this.doCurl("POST","/publisher",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Returns publisher that matches a given publisher id
    *
    *  @param publisher_id
@@ -4837,32 +4851,6 @@
      try { 
     	params.put("publisher_id", publisher_id);
     	retval = this.doCurl("DELETE","/publisher",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Update/Add a publisher
-   *
-   *  @param publisher_id
-   *  @param country
-   *  @param name
-   *  @param description
-   *  @param active
-   *  @return - the data from the api
-  */
-  public String  postPublisher(String publisher_id,String country,String name,String description,String active) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("publisher_id", publisher_id);
-    	params.put("country", country);
-    	params.put("name", name);
-    	params.put("description", description);
-    	params.put("active", active);
-    	retval = this.doCurl("POST","/publisher",params);
     } finally { 
     }
     return retval;
@@ -5637,40 +5625,6 @@
 
 
   /**
-   * Fetch token for update path
-   *
-   *  @param entity_id - The id of the entity being upgraded
-   *  @param portal_name - The name of the application that has initiated the login process, example: 'Your Local'
-   *  @param language - The language for the app
-   *  @param price - The price of the advert in the entities native currency
-   *  @param max_tags - The number of tags attached to the advert
-   *  @param max_locations - The number of locations attached to the advert
-   *  @param contract_length - The number of days from the initial sale date that the contract is valid for
-   *  @param ref_id - The campaign or reference id
-   *  @param flatpack_id - The id of the flatpack site where the request originated
-   *  @return - the data from the api
-  */
-  public String  getTokenUpgrade(String entity_id,String portal_name,String language,String price,String max_tags,String max_locations,String contract_length,String ref_id,String flatpack_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("portal_name", portal_name);
-    	params.put("language", language);
-    	params.put("price", price);
-    	params.put("max_tags", max_tags);
-    	params.put("max_locations", max_locations);
-    	params.put("contract_length", contract_length);
-    	params.put("ref_id", ref_id);
-    	params.put("flatpack_id", flatpack_id);
-    	retval = this.doCurl("GET","/token/upgrade",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * The JaroWinklerDistance between two entities postal address objects
    *
    *  @param first_entity_id - The entity id of the first entity to be used in the postal address difference
@@ -5695,17 +5649,17 @@
    *
    *  @param method - The method e.g. POST
    *  @param path - The relative api call e.g. /entity/phone
-   *  @param curl_data - Multiple lines of data e.g. entity_id=123456&number=07731309555
+   *  @param filedata - A tab separated file for ingest
    *  @param email - Response email address e.g. dave@fender.com
    *  @return - the data from the api
   */
-  public String  postToolsCurl(String method,String path,String curl_data,String email) throws Exception { 
+  public String  postToolsCurl(String method,String path,String filedata,String email) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("method", method);
     	params.put("path", path);
-    	params.put("curl_data", curl_data);
+    	params.put("filedata", filedata);
     	params.put("email", email);
     	retval = this.doCurl("POST","/tools/curl",params);
     } finally { 
