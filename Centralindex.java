@@ -1917,15 +1917,17 @@
    *  @param entity_id
    *  @param headline
    *  @param body
+   *  @param gen_id
    *  @return - the data from the api
   */
-  public String  postEntityDescription(String entity_id,String headline,String body,String _user_id) throws Exception { 
+  public String  postEntityDescription(String entity_id,String headline,String body,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("headline", headline);
     	params.put("body", body);
+    	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/description",params);
     } finally { 
@@ -3333,9 +3335,10 @@
    *  @param website_url
    *  @param display_url
    *  @param website_description
+   *  @param gen_id
    *  @return - the data from the api
   */
-  public String  postEntityWebsite(String entity_id,String website_url,String display_url,String website_description,String _user_id) throws Exception { 
+  public String  postEntityWebsite(String entity_id,String website_url,String display_url,String website_description,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3343,6 +3346,7 @@
     	params.put("website_url", website_url);
     	params.put("display_url", display_url);
     	params.put("website_description", website_description);
+    	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/website",params);
     } finally { 
