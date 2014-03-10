@@ -2853,6 +2853,7 @@
    * Search for matching entities, ordered by nearness
    *
    *  @param what - What to get results for. E.g. Plumber e.g. plumber
+   *  @param country - The country to fetch results for e.g. gb
    *  @param per_page - Number of results returned per page
    *  @param page - Which page number to retrieve
    *  @param language - An ISO compatible language code, E.g. en
@@ -2860,11 +2861,12 @@
    *  @param longitude - The decimal longitude of the centre point of the search
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhatBynearest(String what,String per_page,String page,String language,String latitude,String longitude) throws Exception { 
+  public String  getEntitySearchWhatBynearest(String what,String country,String per_page,String page,String language,String latitude,String longitude) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("what", what);
+    	params.put("country", country);
     	params.put("per_page", per_page);
     	params.put("page", page);
     	params.put("language", language);
@@ -2973,6 +2975,7 @@
    * Search for entities matching the supplied 'who', ordered by nearness
    *
    *  @param who - What to get results for. E.g. Plumber e.g. plumber
+   *  @param country - The country to fetch results for e.g. gb
    *  @param per_page - Number of results returned per page
    *  @param page - Which page number to retrieve
    *  @param language - An ISO compatible language code, E.g. en
@@ -2980,11 +2983,12 @@
    *  @param longitude - The decimal longitude of the centre point of the search
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhoBynearest(String who,String per_page,String page,String language,String latitude,String longitude) throws Exception { 
+  public String  getEntitySearchWhoBynearest(String who,String country,String per_page,String page,String language,String latitude,String longitude) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("who", who);
+    	params.put("country", country);
     	params.put("per_page", per_page);
     	params.put("page", page);
     	params.put("language", language);
