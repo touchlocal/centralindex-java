@@ -5027,9 +5027,10 @@
    *  @param name
    *  @param description
    *  @param active
+   *  @param products
    *  @return - the data from the api
   */
-  public String  postReseller(String reseller_id,String country,String name,String description,String active) throws Exception { 
+  public String  postReseller(String reseller_id,String country,String name,String description,String active,String products) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -5038,6 +5039,7 @@
     	params.put("name", name);
     	params.put("description", description);
     	params.put("active", active);
+    	params.put("products", products);
     	retval = this.doCurl("POST","/reseller",params);
     } finally { 
     }
@@ -5749,9 +5751,10 @@
    *  @param province
    *  @param postcode
    *  @param country
+   *  @param geocoder
    *  @return - the data from the api
   */
-  public String  getToolsGeocode(String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country) throws Exception { 
+  public String  getToolsGeocode(String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String geocoder) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -5765,6 +5768,7 @@
     	params.put("province", province);
     	params.put("postcode", postcode);
     	params.put("country", country);
+    	params.put("geocoder", geocoder);
     	retval = this.doCurl("GET","/tools/geocode",params);
     } finally { 
     }
