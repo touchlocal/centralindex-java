@@ -5452,13 +5452,17 @@
    * Get all syndication log entries for a given entity id
    *
    *  @param entity_id
+   *  @param page
+   *  @param per_page
    *  @return - the data from the api
   */
-  public String  getSyndication_logBy_entity_id(String entity_id) throws Exception { 
+  public String  getSyndication_logBy_entity_id(String entity_id,String page,String per_page) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
+    	params.put("page", page);
+    	params.put("per_page", per_page);
     	retval = this.doCurl("GET","/syndication_log/by_entity_id",params);
     } finally { 
     }
