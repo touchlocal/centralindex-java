@@ -4821,14 +4821,18 @@
    *
    *  @param multipack_id - the unique id to search for
    *  @param filedata
+   *  @param mapPinOffsetX
+   *  @param mapPinOffsetY
    *  @return - the data from the api
   */
-  public String  postMultipackMap_pin(String multipack_id,String filedata) throws Exception { 
+  public String  postMultipackMap_pin(String multipack_id,String filedata,String mapPinOffsetX,String mapPinOffsetY) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("multipack_id", multipack_id);
     	params.put("filedata", filedata);
+    	params.put("mapPinOffsetX", mapPinOffsetX);
+    	params.put("mapPinOffsetY", mapPinOffsetY);
     	retval = this.doCurl("POST","/multipack/map_pin",params);
     } finally { 
     }
@@ -7469,13 +7473,15 @@
    * Downgrade an existing user
    *
    *  @param user_id
+   *  @param user_type
    *  @return - the data from the api
   */
-  public String  postUserDowngrade(String user_id) throws Exception { 
+  public String  postUserDowngrade(String user_id,String user_type) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("user_id", user_id);
+    	params.put("user_type", user_type);
     	retval = this.doCurl("POST","/user/downgrade",params);
     } finally { 
     }
