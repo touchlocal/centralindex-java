@@ -888,9 +888,12 @@
    *  @param source
    *  @param channel
    *  @param campaign
+   *  @param referrer_domain
+   *  @param referrer_name
+   *  @param flatpack_id
    *  @return - the data from the api
   */
-  public String  postContractCreate(String entity_id,String user_id,String payment_provider,String basket,String billing_period,String source,String channel,String campaign) throws Exception { 
+  public String  postContractCreate(String entity_id,String user_id,String payment_provider,String basket,String billing_period,String source,String channel,String campaign,String referrer_domain,String referrer_name,String flatpack_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -902,6 +905,9 @@
     	params.put("source", source);
     	params.put("channel", channel);
     	params.put("campaign", campaign);
+    	params.put("referrer_domain", referrer_domain);
+    	params.put("referrer_name", referrer_name);
+    	params.put("flatpack_id", flatpack_id);
     	retval = this.doCurl("POST","/contract/create",params);
     } finally { 
     }
@@ -4740,13 +4746,14 @@
    *  @param searchDescriptionNoWhere - Description of serps page when no where is specified
    *  @param searchIntroHeader - Introductory header
    *  @param searchIntroText - Introductory text
+   *  @param searchShowAll - display all search results on one page
    *  @param cookiePolicyShow - whether to show cookie policy
    *  @param cookiePolicyUrl - url of cookie policy
    *  @param twitterUrl - url of twitter feed
    *  @param facebookUrl - url of facebook feed
    *  @return - the data from the api
   */
-  public String  postMultipack(String multipack_id,String group_id,String domainName,String multipackName,String less,String country,String menuTop,String menuBottom,String language,String menuFooter,String searchNumberResults,String searchTitle,String searchDescription,String searchTitleNoWhere,String searchDescriptionNoWhere,String searchIntroHeader,String searchIntroText,String cookiePolicyShow,String cookiePolicyUrl,String twitterUrl,String facebookUrl) throws Exception { 
+  public String  postMultipack(String multipack_id,String group_id,String domainName,String multipackName,String less,String country,String menuTop,String menuBottom,String language,String menuFooter,String searchNumberResults,String searchTitle,String searchDescription,String searchTitleNoWhere,String searchDescriptionNoWhere,String searchIntroHeader,String searchIntroText,String searchShowAll,String cookiePolicyShow,String cookiePolicyUrl,String twitterUrl,String facebookUrl) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4767,6 +4774,7 @@
     	params.put("searchDescriptionNoWhere", searchDescriptionNoWhere);
     	params.put("searchIntroHeader", searchIntroHeader);
     	params.put("searchIntroText", searchIntroText);
+    	params.put("searchShowAll", searchShowAll);
     	params.put("cookiePolicyShow", cookiePolicyShow);
     	params.put("cookiePolicyUrl", cookiePolicyUrl);
     	params.put("twitterUrl", twitterUrl);
