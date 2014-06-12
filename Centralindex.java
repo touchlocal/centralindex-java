@@ -4744,26 +4744,30 @@
   /**
    * Create a matching log
    *
-   *  @param processed_entity_id
-   *  @param matched_entity_id
-   *  @param processed_mega
-   *  @param matched_mega
-   *  @param processed_group
-   *  @param matched_group
-   *  @param merged
+   *  @param primary_entity_id
+   *  @param secondary_entity_id
+   *  @param primary_name
+   *  @param secondary_name
+   *  @param address_score
+   *  @param address_match
+   *  @param name_score
+   *  @param name_match
+   *  @param distance
    *  @return - the data from the api
   */
-  public String  putMatching_log(String processed_entity_id,String matched_entity_id,String processed_mega,String matched_mega,String processed_group,String matched_group,String merged) throws Exception { 
+  public String  putMatching_log(String primary_entity_id,String secondary_entity_id,String primary_name,String secondary_name,String address_score,String address_match,String name_score,String name_match,String distance) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
-    	params.put("processed_entity_id", processed_entity_id);
-    	params.put("matched_entity_id", matched_entity_id);
-    	params.put("processed_mega", processed_mega);
-    	params.put("matched_mega", matched_mega);
-    	params.put("processed_group", processed_group);
-    	params.put("matched_group", matched_group);
-    	params.put("merged", merged);
+    	params.put("primary_entity_id", primary_entity_id);
+    	params.put("secondary_entity_id", secondary_entity_id);
+    	params.put("primary_name", primary_name);
+    	params.put("secondary_name", secondary_name);
+    	params.put("address_score", address_score);
+    	params.put("address_match", address_match);
+    	params.put("name_score", name_score);
+    	params.put("name_match", name_match);
+    	params.put("distance", distance);
     	retval = this.doCurl("PUT","/matching_log",params);
     } finally { 
     }
