@@ -4923,10 +4923,13 @@
    *  @param name_match
    *  @param distance
    *  @param phone_match
+   *  @param category_match
+   *  @param email_match
+   *  @param website_match
    *  @param match
    *  @return - the data from the api
   */
-  public String  putMatching_log(String primary_entity_id,String secondary_entity_id,String primary_name,String secondary_name,String address_score,String address_match,String name_score,String name_match,String distance,String phone_match,String match) throws Exception { 
+  public String  putMatching_log(String primary_entity_id,String secondary_entity_id,String primary_name,String secondary_name,String address_score,String address_match,String name_score,String name_match,String distance,String phone_match,String category_match,String email_match,String website_match,String match) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4940,6 +4943,9 @@
     	params.put("name_match", name_match);
     	params.put("distance", distance);
     	params.put("phone_match", phone_match);
+    	params.put("category_match", category_match);
+    	params.put("email_match", email_match);
+    	params.put("website_match", website_match);
     	params.put("match", match);
     	retval = this.doCurl("PUT","/matching_log",params);
     } finally { 
