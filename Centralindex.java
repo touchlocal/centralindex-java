@@ -496,9 +496,10 @@
    *  @param referrer_url
    *  @param referrer_name
    *  @param destructive
+   *  @param delete_mode - The type of object contribution deletion
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String building_number,String branch_name,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name,String destructive,String _user_id) throws Exception { 
+  public String  putBusiness(String name,String building_number,String branch_name,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name,String destructive,String delete_mode,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -527,6 +528,7 @@
     	params.put("referrer_url", referrer_url);
     	params.put("referrer_name", referrer_name);
     	params.put("destructive", destructive);
+    	params.put("delete_mode", delete_mode);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/business",params);
     } finally { 
@@ -1372,15 +1374,17 @@
    *  @param entity_id - The unique entity ID e.g. 379236608286720
    *  @param domain
    *  @param path
+   *  @param data_filter
    *  @return - the data from the api
   */
-  public String  getEntity(String entity_id,String domain,String path) throws Exception { 
+  public String  getEntity(String entity_id,String domain,String path,String data_filter) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("data_filter", data_filter);
     	retval = this.doCurl("GET","/entity",params);
     } finally { 
     }
@@ -2619,9 +2623,10 @@
    *  @param uncontribute_masheryid - Do we want to uncontribute any data for a masheryid?
    *  @param uncontribute_userid - Do we want to uncontribute any data for a user_id?
    *  @param uncontribute_supplierid - Do we want to uncontribute any data for a supplier_id?
+   *  @param delete_mode - The type of object contribution deletion
    *  @return - the data from the api
   */
-  public String  postEntityMerge(String from,String to,String override_trust,String uncontribute_masheryid,String uncontribute_userid,String uncontribute_supplierid,String _user_id) throws Exception { 
+  public String  postEntityMerge(String from,String to,String override_trust,String uncontribute_masheryid,String uncontribute_userid,String uncontribute_supplierid,String delete_mode,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2631,6 +2636,7 @@
     	params.put("uncontribute_masheryid", uncontribute_masheryid);
     	params.put("uncontribute_userid", uncontribute_userid);
     	params.put("uncontribute_supplierid", uncontribute_supplierid);
+    	params.put("delete_mode", delete_mode);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/merge",params);
     } finally { 
@@ -5798,9 +5804,10 @@
    *  @param description
    *  @param active
    *  @param products
+   *  @param master_user_id
    *  @return - the data from the api
   */
-  public String  postReseller(String reseller_id,String country,String name,String description,String active,String products) throws Exception { 
+  public String  postReseller(String reseller_id,String country,String name,String description,String active,String products,String master_user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -5810,6 +5817,7 @@
     	params.put("description", description);
     	params.put("active", active);
     	params.put("products", products);
+    	params.put("master_user_id", master_user_id);
     	retval = this.doCurl("POST","/reseller",params);
     } finally { 
     }
@@ -6143,9 +6151,10 @@
    *  @param seed_masheryid
    *  @param supplier_masheryid
    *  @param country
+   *  @param data_type
    *  @return - the data from the api
   */
-  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String _user_id) throws Exception { 
+  public String  postSyndicationCreate(String syndication_type,String publisher_id,String expiry_date,String entity_id,String group_id,String seed_masheryid,String supplier_masheryid,String country,String data_type,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -6157,6 +6166,7 @@
     	params.put("seed_masheryid", seed_masheryid);
     	params.put("supplier_masheryid", supplier_masheryid);
     	params.put("country", country);
+    	params.put("data_type", data_type);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/syndication/create",params);
     } finally { 
