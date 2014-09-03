@@ -497,9 +497,10 @@
    *  @param referrer_name
    *  @param destructive
    *  @param delete_mode - The type of object contribution deletion
+   *  @param master_entity_id - The entity you want this data to go to
    *  @return - the data from the api
   */
-  public String  putBusiness(String name,String building_number,String branch_name,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name,String destructive,String delete_mode,String _user_id) throws Exception { 
+  public String  putBusiness(String name,String building_number,String branch_name,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String latitude,String longitude,String timezone,String telephone_number,String additional_telephone_number,String email,String website,String category_id,String category_type,String do_not_display,String referrer_url,String referrer_name,String destructive,String delete_mode,String master_entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -529,6 +530,7 @@
     	params.put("referrer_name", referrer_name);
     	params.put("destructive", destructive);
     	params.put("delete_mode", delete_mode);
+    	params.put("master_entity_id", master_entity_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/business",params);
     } finally { 
@@ -543,15 +545,17 @@
    *  @param json - Business JSON
    *  @param country - The country to fetch results for e.g. gb
    *  @param timezone
+   *  @param master_entity_id - The entity you want this data to go to
    *  @return - the data from the api
   */
-  public String  putBusinessJson(String json,String country,String timezone,String _user_id) throws Exception { 
+  public String  putBusinessJson(String json,String country,String timezone,String master_entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("json", json);
     	params.put("country", country);
     	params.put("timezone", timezone);
+    	params.put("master_entity_id", master_entity_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/business/json",params);
     } finally { 
@@ -7311,7 +7315,7 @@
 
 
   /**
-   * Fetch the entity and convert it to Nokia CSV format
+   * Fetch the entity and convert it to Nokia NBS CSV format
    *
    *  @param entity_id - The entity_id to fetch
    *  @return - the data from the api
