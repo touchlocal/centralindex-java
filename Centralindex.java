@@ -3648,17 +3648,21 @@
    * Separates an entity into two distinct entities 
    *
    *  @param entity_id
-   *  @param supplier_masheryid
-   *  @param supplier_id
+   *  @param unmerge_masheryid
+   *  @param unmerge_supplier_id
+   *  @param unmerge_user_id
+   *  @param destructive
    *  @return - the data from the api
   */
-  public String  postEntityUnmerge(String entity_id,String supplier_masheryid,String supplier_id,String _user_id) throws Exception { 
+  public String  postEntityUnmerge(String entity_id,String unmerge_masheryid,String unmerge_supplier_id,String unmerge_user_id,String destructive,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("supplier_masheryid", supplier_masheryid);
-    	params.put("supplier_id", supplier_id);
+    	params.put("unmerge_masheryid", unmerge_masheryid);
+    	params.put("unmerge_supplier_id", unmerge_supplier_id);
+    	params.put("unmerge_user_id", unmerge_user_id);
+    	params.put("destructive", destructive);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/unmerge",params);
     } finally { 
