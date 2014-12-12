@@ -6016,9 +6016,10 @@
    *  @param data_type - The type of data being reported
    *  @param inactive_reason - The reason for making the entity inactive
    *  @param inactive_description - A description to accompany the inactive reasoning
+   *  @param feedback - Some feedback from the person submitting the signal
    *  @return - the data from the api
   */
-  public String  postSignal(String entity_id,String country,String gen_id,String signal_type,String data_type,String inactive_reason,String inactive_description) throws Exception { 
+  public String  postSignal(String entity_id,String country,String gen_id,String signal_type,String data_type,String inactive_reason,String inactive_description,String feedback) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -6029,6 +6030,7 @@
     	params.put("data_type", data_type);
     	params.put("inactive_reason", inactive_reason);
     	params.put("inactive_description", inactive_description);
+    	params.put("feedback", feedback);
     	retval = this.doCurl("POST","/signal",params);
     } finally { 
     }
