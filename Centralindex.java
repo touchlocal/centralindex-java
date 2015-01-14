@@ -4733,9 +4733,10 @@
    *  @param radius - Radius in km
    *  @param resolution
    *  @param country
+   *  @param num_results
    *  @return - the data from the api
   */
-  public String  getLocationContext(String location_id,String latitude,String longitude,String radius,String resolution,String country) throws Exception { 
+  public String  getLocationContext(String location_id,String latitude,String longitude,String radius,String resolution,String country,String num_results) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -4745,6 +4746,7 @@
     	params.put("radius", radius);
     	params.put("resolution", resolution);
     	params.put("country", country);
+    	params.put("num_results", num_results);
     	retval = this.doCurl("GET","/location/context",params);
     } finally { 
     }
