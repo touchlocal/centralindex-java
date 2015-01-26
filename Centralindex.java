@@ -546,9 +546,10 @@
    *  @param country - The country to fetch results for e.g. gb
    *  @param timezone
    *  @param master_entity_id - The entity you want this data to go to
+   *  @param queue_priority
    *  @return - the data from the api
   */
-  public String  putBusinessJson(String json,String country,String timezone,String master_entity_id,String _user_id) throws Exception { 
+  public String  putBusinessJson(String json,String country,String timezone,String master_entity_id,String _user_id,String queue_priority) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -557,6 +558,7 @@
     	params.put("timezone", timezone);
     	params.put("master_entity_id", master_entity_id);
     	params.put("_user_id", _user_id);
+    	params.put("queue_priority", queue_priority);
     	retval = this.doCurl("PUT","/business/json",params);
     } finally { 
     }
