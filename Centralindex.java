@@ -6267,6 +6267,26 @@
 
 
   /**
+   * Get a Syndication by Reseller (Mashery ID) and optional entity ID
+   *
+   *  @param reseller_masheryid
+   *  @param entity_id
+   *  @return - the data from the api
+  */
+  public String  getSyndicationBy_reseller(String reseller_masheryid,String entity_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("reseller_masheryid", reseller_masheryid);
+    	params.put("entity_id", entity_id);
+    	retval = this.doCurl("GET","/syndication/by_reseller",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Cancel a syndication
    *
    *  @param syndication_id
@@ -7885,24 +7905,6 @@
 
 
   /**
-   * Given a transaction_id retrieve information on it
-   *
-   *  @param transaction_id
-   *  @return - the data from the api
-  */
-  public String  getTransaction(String transaction_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("transaction_id", transaction_id);
-    	retval = this.doCurl("GET","/transaction",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Create a new transaction
    *
    *  @param entity_id
@@ -7924,6 +7926,24 @@
     	params.put("currency", currency);
     	params.put("notes", notes);
     	retval = this.doCurl("PUT","/transaction",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Given a transaction_id retrieve information on it
+   *
+   *  @param transaction_id
+   *  @return - the data from the api
+  */
+  public String  getTransaction(String transaction_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("transaction_id", transaction_id);
+    	retval = this.doCurl("GET","/transaction",params);
     } finally { 
     }
     return retval;
