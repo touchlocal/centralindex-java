@@ -2931,10 +2931,11 @@
    *  @param purge_masheryid - The purge masheryid to match
    *  @param purge_supplier_id - The purge supplier id to match
    *  @param purge_user_id - The purge user id to match
+   *  @param exclude - List of entity fields that are excluded from the purge
    *  @param destructive
    *  @return - the data from the api
   */
-  public String  postEntityPurge(String entity_id,String purge_masheryid,String purge_supplier_id,String purge_user_id,String _user_id,String destructive) throws Exception { 
+  public String  postEntityPurge(String entity_id,String purge_masheryid,String purge_supplier_id,String purge_user_id,String _user_id,String exclude,String destructive) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -2943,6 +2944,7 @@
     	params.put("purge_supplier_id", purge_supplier_id);
     	params.put("purge_user_id", purge_user_id);
     	params.put("_user_id", _user_id);
+    	params.put("exclude", exclude);
     	params.put("destructive", destructive);
     	retval = this.doCurl("POST","/entity/purge",params);
     } finally { 
