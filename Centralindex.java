@@ -5511,9 +5511,10 @@
    *  @param type
    *  @param action
    *  @param data
+   *  @param slack_channel
    *  @return - the data from the api
   */
-  public String  postOps_log(String success,String type,String action,String data) throws Exception { 
+  public String  postOps_log(String success,String type,String action,String data,String slack_channel) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -5521,6 +5522,7 @@
     	params.put("type", type);
     	params.put("action", action);
     	params.put("data", data);
+    	params.put("slack_channel", slack_channel);
     	retval = this.doCurl("POST","/ops_log",params);
     } finally { 
     }
