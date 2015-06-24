@@ -3155,9 +3155,10 @@
    *  @param language
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchByboundingbox(String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchByboundingbox(String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3171,6 +3172,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/byboundingbox",params);
     } finally { 
     }
@@ -3190,9 +3192,10 @@
    *  @param longitude - The decimal longitude of the search context (optional)
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchBylocation(String where,String per_page,String page,String country,String language,String latitude,String longitude,String domain,String path) throws Exception { 
+  public String  getEntitySearchBylocation(String where,String per_page,String page,String country,String language,String latitude,String longitude,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3205,6 +3208,7 @@
     	params.put("longitude", longitude);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/bylocation",params);
     } finally { 
     }
@@ -3226,9 +3230,10 @@
    *  @param domain
    *  @param path
    *  @param unitOfDistance
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchGroupBynearest(String group_id,String country,String per_page,String page,String language,String latitude,String longitude,String where,String domain,String path,String unitOfDistance) throws Exception { 
+  public String  getEntitySearchGroupBynearest(String group_id,String country,String per_page,String page,String language,String latitude,String longitude,String where,String domain,String path,String unitOfDistance,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3243,6 +3248,7 @@
     	params.put("domain", domain);
     	params.put("path", path);
     	params.put("unitOfDistance", unitOfDistance);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/group/bynearest",params);
     } finally { 
     }
@@ -3262,9 +3268,10 @@
    *  @param longitude - The decimal longitude of the centre point of the search
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchKeywordBynearest(String keyword,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path) throws Exception { 
+  public String  getEntitySearchKeywordBynearest(String keyword,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3277,6 +3284,7 @@
     	params.put("longitude", longitude);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/keyword/bynearest",params);
     } finally { 
     }
@@ -3294,9 +3302,10 @@
    *  @param language - An ISO compatible language code, E.g. en
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhat(String what,String per_page,String page,String country,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhat(String what,String per_page,String page,String country,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3307,6 +3316,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/what",params);
     } finally { 
     }
@@ -3328,9 +3338,10 @@
    *  @param language
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhatByboundingbox(String what,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhatByboundingbox(String what,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3345,6 +3356,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/what/byboundingbox",params);
     } finally { 
     }
@@ -3365,9 +3377,10 @@
    *  @param longitude - The decimal longitude of the search context (optional)
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhatBylocation(String what,String where,String per_page,String page,String country,String language,String latitude,String longitude,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhatBylocation(String what,String where,String per_page,String page,String country,String language,String latitude,String longitude,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3381,6 +3394,7 @@
     	params.put("longitude", longitude);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/what/bylocation",params);
     } finally { 
     }
@@ -3400,9 +3414,10 @@
    *  @param longitude - The decimal longitude of the centre point of the search
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhatBynearest(String what,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhatBynearest(String what,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3415,6 +3430,7 @@
     	params.put("longitude", longitude);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/what/bynearest",params);
     } finally { 
     }
@@ -3432,9 +3448,10 @@
    *  @param language - An ISO compatible language code, E.g. en
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWho(String who,String per_page,String page,String country,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchWho(String who,String per_page,String page,String country,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3445,6 +3462,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/who",params);
     } finally { 
     }
@@ -3466,9 +3484,10 @@
    *  @param language - An ISO compatible language code, E.g. en
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhoByboundingbox(String who,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhoByboundingbox(String who,String latitude_1,String longitude_1,String latitude_2,String longitude_2,String per_page,String page,String country,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3483,6 +3502,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/who/byboundingbox",params);
     } finally { 
     }
@@ -3503,9 +3523,10 @@
    *  @param language - An ISO compatible language code, E.g. en
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhoBylocation(String who,String where,String per_page,String page,String country,String latitude,String longitude,String language,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhoBylocation(String who,String where,String per_page,String page,String country,String latitude,String longitude,String language,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3519,6 +3540,7 @@
     	params.put("language", language);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/who/bylocation",params);
     } finally { 
     }
@@ -3538,9 +3560,10 @@
    *  @param longitude - The decimal longitude of the centre point of the search
    *  @param domain
    *  @param path
+   *  @param restrict_category_ids - Pipe delimited optional IDs to restrict matches to (optional)
    *  @return - the data from the api
   */
-  public String  getEntitySearchWhoBynearest(String who,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path) throws Exception { 
+  public String  getEntitySearchWhoBynearest(String who,String country,String per_page,String page,String language,String latitude,String longitude,String domain,String path,String restrict_category_ids) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -3553,6 +3576,7 @@
     	params.put("longitude", longitude);
     	params.put("domain", domain);
     	params.put("path", path);
+    	params.put("restrict_category_ids", restrict_category_ids);
     	retval = this.doCurl("GET","/entity/search/who/bynearest",params);
     } finally { 
     }
