@@ -7361,9 +7361,10 @@
    *  @param from - The phone number to call from
    *  @param pin - The pin to verify the phone number with
    *  @param twilio_voice - The language to read the verification in
+   *  @param extension - The pin to verify the phone number with
    *  @return - the data from the api
   */
-  public String  getToolsPhonecallVerify(String to,String from,String pin,String twilio_voice) throws Exception { 
+  public String  getToolsPhonecallVerify(String to,String from,String pin,String twilio_voice,String extension) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -7371,6 +7372,7 @@
     	params.put("from", from);
     	params.put("pin", pin);
     	params.put("twilio_voice", twilio_voice);
+    	params.put("extension", extension);
     	retval = this.doCurl("GET","/tools/phonecall/verify",params);
     } finally { 
     }
