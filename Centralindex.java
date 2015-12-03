@@ -7377,10 +7377,9 @@
    *  @param province
    *  @param postcode
    *  @param country
-   *  @param geocoder
    *  @return - the data from the api
   */
-  public String  getToolsGeocode(String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country,String geocoder) throws Exception { 
+  public String  getToolsGeocode(String building_number,String address1,String address2,String address3,String district,String town,String county,String province,String postcode,String country) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
@@ -7394,7 +7393,6 @@
     	params.put("province", province);
     	params.put("postcode", postcode);
     	params.put("country", country);
-    	params.put("geocoder", geocoder);
     	retval = this.doCurl("GET","/tools/geocode",params);
     } finally { 
     }
