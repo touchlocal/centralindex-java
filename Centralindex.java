@@ -283,34 +283,6 @@
 
       
   /**
-   * When we get some activity make a record of it
-   *
-   *  @param entity_id - The entity to pull
-   *  @param entity_name - The entity name this entry refers to
-   *  @param type - The activity type.
-   *  @param country - The country for the activity
-   *  @param longitude - The longitude for teh activity
-   *  @param latitude - The latitude for teh activity
-   *  @return - the data from the api
-  */
-  public String  postActivity_stream(String entity_id,String entity_name,String type,String country,String longitude,String latitude) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("entity_name", entity_name);
-    	params.put("type", type);
-    	params.put("country", country);
-    	params.put("longitude", longitude);
-    	params.put("latitude", latitude);
-    	retval = this.doCurl("POST","/activity_stream",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Get the activity from the collection
    *
    *  @param type - The activity type: add, claim, special offer, image, video, description, testimonial
@@ -336,6 +308,34 @@
     	params.put("number_results", number_results);
     	params.put("unique_action", unique_action);
     	retval = this.doCurl("GET","/activity_stream",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * When we get some activity make a record of it
+   *
+   *  @param entity_id - The entity to pull
+   *  @param entity_name - The entity name this entry refers to
+   *  @param type - The activity type.
+   *  @param country - The country for the activity
+   *  @param longitude - The longitude for teh activity
+   *  @param latitude - The latitude for teh activity
+   *  @return - the data from the api
+  */
+  public String  postActivity_stream(String entity_id,String entity_name,String type,String country,String longitude,String latitude) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("entity_name", entity_name);
+    	params.put("type", type);
+    	params.put("country", country);
+    	params.put("longitude", longitude);
+    	params.put("latitude", latitude);
+    	retval = this.doCurl("POST","/activity_stream",params);
     } finally { 
     }
     return retval;
@@ -409,17 +409,23 @@
 
 
   /**
-   * Delete an association
+   * Will create a new association or update an existing one
    *
    *  @param association_id
+   *  @param association_name
+   *  @param association_url
+   *  @param filedata
    *  @return - the data from the api
   */
-  public String  deleteAssociation(String association_id) throws Exception { 
+  public String  postAssociation(String association_id,String association_name,String association_url,String filedata) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("association_id", association_id);
-    	retval = this.doCurl("DELETE","/association",params);
+    	params.put("association_name", association_name);
+    	params.put("association_url", association_url);
+    	params.put("filedata", filedata);
+    	retval = this.doCurl("POST","/association",params);
     } finally { 
     }
     return retval;
@@ -445,23 +451,17 @@
 
 
   /**
-   * Will create a new association or update an existing one
+   * Delete an association
    *
    *  @param association_id
-   *  @param association_name
-   *  @param association_url
-   *  @param filedata
    *  @return - the data from the api
   */
-  public String  postAssociation(String association_id,String association_name,String association_url,String filedata) throws Exception { 
+  public String  deleteAssociation(String association_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("association_id", association_id);
-    	params.put("association_name", association_name);
-    	params.put("association_url", association_url);
-    	params.put("filedata", filedata);
-    	retval = this.doCurl("POST","/association",params);
+    	retval = this.doCurl("DELETE","/association",params);
     } finally { 
     }
     return retval;
@@ -692,24 +692,6 @@
 
 
   /**
-   * Returns business tool that matches a given tool id
-   *
-   *  @param tool_id
-   *  @return - the data from the api
-  */
-  public String  getBusiness_tool(String tool_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("tool_id", tool_id);
-    	retval = this.doCurl("GET","/business_tool",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Update/Add a Business Tool
    *
    *  @param tool_id
@@ -749,6 +731,24 @@
      try { 
     	params.put("tool_id", tool_id);
     	retval = this.doCurl("DELETE","/business_tool",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns business tool that matches a given tool id
+   *
+   *  @param tool_id
+   *  @return - the data from the api
+  */
+  public String  getBusiness_tool(String tool_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("tool_id", tool_id);
+    	retval = this.doCurl("GET","/business_tool",params);
     } finally { 
     }
     return retval;
@@ -960,28 +960,6 @@
 
 
   /**
-   * With a known category id, an synonym object can be added.
-   *
-   *  @param category_id
-   *  @param synonym
-   *  @param language
-   *  @return - the data from the api
-  */
-  public String  postCategorySynonym(String category_id,String synonym,String language) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("category_id", category_id);
-    	params.put("synonym", synonym);
-    	params.put("language", language);
-    	retval = this.doCurl("POST","/category/synonym",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known category id, a synonyms object can be removed.
    *
    *  @param category_id
@@ -997,6 +975,28 @@
     	params.put("synonym", synonym);
     	params.put("language", language);
     	retval = this.doCurl("DELETE","/category/synonym",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * With a known category id, an synonym object can be added.
+   *
+   *  @param category_id
+   *  @param synonym
+   *  @param language
+   *  @return - the data from the api
+  */
+  public String  postCategorySynonym(String category_id,String synonym,String language) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("category_id", category_id);
+    	params.put("synonym", synonym);
+    	params.put("language", language);
+    	retval = this.doCurl("POST","/category/synonym",params);
     } finally { 
     }
     return retval;
@@ -1476,32 +1476,6 @@
 
 
   /**
-   * Allows a whole entity to be pulled from the datastore by its unique id
-   *
-   *  @param entity_id - The unique entity ID e.g. 379236608286720
-   *  @param domain
-   *  @param path
-   *  @param data_filter
-   *  @param filter_by_confidence
-   *  @return - the data from the api
-  */
-  public String  getEntity(String entity_id,String domain,String path,String data_filter,String filter_by_confidence) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("domain", domain);
-    	params.put("path", path);
-    	params.put("data_filter", data_filter);
-    	params.put("filter_by_confidence", filter_by_confidence);
-    	retval = this.doCurl("GET","/entity",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * This entity isn't really supported anymore. You probably want PUT /business. Only to be used for testing.
    *
    *  @param type
@@ -1522,6 +1496,32 @@
     	params.put("our_data", our_data);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("PUT","/entity",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a whole entity to be pulled from the datastore by its unique id
+   *
+   *  @param entity_id - The unique entity ID e.g. 379236608286720
+   *  @param domain
+   *  @param path
+   *  @param data_filter
+   *  @param filter_by_confidence
+   *  @return - the data from the api
+  */
+  public String  getEntity(String entity_id,String domain,String path,String data_filter,String filter_by_confidence) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("domain", domain);
+    	params.put("path", path);
+    	params.put("data_filter", data_filter);
+    	params.put("filter_by_confidence", filter_by_confidence);
+    	retval = this.doCurl("GET","/entity",params);
     } finally { 
     }
     return retval;
@@ -1948,27 +1948,6 @@
 
 
   /**
-   * Adding an affiliate adblock to a known entity
-   *
-   *  @param entity_id
-   *  @param adblock - Number of results returned per page
-   *  @return - the data from the api
-  */
-  public String  postEntityAffiliate_adblock(String entity_id,String adblock,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("adblock", adblock);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("POST","/entity/affiliate_adblock",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Deleteing an affiliate adblock from a known entity
    *
    *  @param entity_id
@@ -1983,6 +1962,27 @@
     	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/affiliate_adblock",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Adding an affiliate adblock to a known entity
+   *
+   *  @param entity_id
+   *  @param adblock - Number of results returned per page
+   *  @return - the data from the api
+  */
+  public String  postEntityAffiliate_adblock(String entity_id,String adblock,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("adblock", adblock);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("POST","/entity/affiliate_adblock",params);
     } finally { 
     }
     return retval;
@@ -2040,27 +2040,6 @@
 
 
   /**
-   * Remove an announcement object to an existing entity.
-   *
-   *  @param entity_id
-   *  @param announcement_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityAnnouncement(String entity_id,String announcement_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("announcement_id", announcement_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/announcement",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Add an annoucement object to an existing entity.
    *
    *  @param entity_id
@@ -2100,6 +2079,27 @@
 
 
   /**
+   * Remove an announcement object to an existing entity.
+   *
+   *  @param entity_id
+   *  @param announcement_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityAnnouncement(String entity_id,String announcement_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("announcement_id", announcement_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/announcement",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Fetch an announcement object from an existing entity.
    *
    *  @param entity_id
@@ -2113,6 +2113,27 @@
     	params.put("entity_id", entity_id);
     	params.put("announcement_id", announcement_id);
     	retval = this.doCurl("GET","/entity/announcement",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a association_membership object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityAssociation_membership(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/association_membership",params);
     } finally { 
     }
     return retval;
@@ -2138,27 +2159,6 @@
     	params.put("association_member_id", association_member_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/association_membership",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Allows a association_membership object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityAssociation_membership(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/association_membership",params);
     } finally { 
     }
     return retval;
@@ -2528,27 +2528,6 @@
 
 
   /**
-   * Allows a description object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityDescription(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/description",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a description object can be added.
    *
    *  @param entity_id
@@ -2567,6 +2546,27 @@
     	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/description",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a description object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityDescription(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/description",params);
     } finally { 
     }
     return retval;
@@ -2639,29 +2639,6 @@
 
 
   /**
-   * With a known entity id, an email address object can be added.
-   *
-   *  @param entity_id
-   *  @param email_address
-   *  @param email_description
-   *  @return - the data from the api
-  */
-  public String  postEntityEmail(String entity_id,String email_address,String email_description,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("email_address", email_address);
-    	params.put("email_description", email_description);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("POST","/entity/email",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Allows a email object to be reduced in confidence
    *
    *  @param entity_id
@@ -2683,20 +2660,22 @@
 
 
   /**
-   * Allows an employee object to be reduced in confidence
+   * With a known entity id, an email address object can be added.
    *
    *  @param entity_id
-   *  @param gen_id
+   *  @param email_address
+   *  @param email_description
    *  @return - the data from the api
   */
-  public String  deleteEntityEmployee(String entity_id,String gen_id,String _user_id) throws Exception { 
+  public String  postEntityEmail(String entity_id,String email_address,String email_description,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
+    	params.put("email_address", email_address);
+    	params.put("email_description", email_description);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/employee",params);
+    	retval = this.doCurl("POST","/entity/email",params);
     } finally { 
     }
     return retval;
@@ -2737,20 +2716,20 @@
 
 
   /**
-   * Allows a fax object to be reduced in confidence
+   * Allows an employee object to be reduced in confidence
    *
    *  @param entity_id
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntityFax(String entity_id,String gen_id,String _user_id) throws Exception { 
+  public String  deleteEntityEmployee(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/fax",params);
+    	retval = this.doCurl("DELETE","/entity/employee",params);
     } finally { 
     }
     return retval;
@@ -2781,22 +2760,20 @@
 
 
   /**
-   * With a known entity id, a featured message can be added
+   * Allows a fax object to be reduced in confidence
    *
    *  @param entity_id
-   *  @param featured_text
-   *  @param featured_url
+   *  @param gen_id
    *  @return - the data from the api
   */
-  public String  postEntityFeatured_message(String entity_id,String featured_text,String featured_url,String _user_id) throws Exception { 
+  public String  deleteEntityFax(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("featured_text", featured_text);
-    	params.put("featured_url", featured_url);
+    	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("POST","/entity/featured_message",params);
+    	retval = this.doCurl("DELETE","/entity/fax",params);
     } finally { 
     }
     return retval;
@@ -2816,6 +2793,29 @@
     	params.put("entity_id", entity_id);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/entity/featured_message",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * With a known entity id, a featured message can be added
+   *
+   *  @param entity_id
+   *  @param featured_text
+   *  @param featured_url
+   *  @return - the data from the api
+  */
+  public String  postEntityFeatured_message(String entity_id,String featured_text,String featured_url,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("featured_text", featured_text);
+    	params.put("featured_url", featured_url);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("POST","/entity/featured_message",params);
     } finally { 
     }
     return retval;
@@ -2890,27 +2890,6 @@
 
 
   /**
-   * Allows a image object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityImage(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/image",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a image object can be added.
    *
    *  @param entity_id
@@ -2934,6 +2913,27 @@
 
 
   /**
+   * Allows a image object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityImage(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/image",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * With a known entity id, a image can be retrieved from a url and added.
    *
    *  @param entity_id
@@ -2950,6 +2950,25 @@
     	params.put("image_name", image_name);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/image/by_url",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * With a known entity id and a known invoice_address ID, we can delete a specific invoice_address object from an enitity.
+   *
+   *  @param entity_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityInvoice_address(String entity_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/invoice_address",params);
     } finally { 
     }
     return retval;
@@ -2996,18 +3015,20 @@
 
 
   /**
-   * With a known entity id and a known invoice_address ID, we can delete a specific invoice_address object from an enitity.
+   * Allows a list description object to be reduced in confidence
    *
+   *  @param gen_id
    *  @param entity_id
    *  @return - the data from the api
   */
-  public String  deleteEntityInvoice_address(String entity_id,String _user_id) throws Exception { 
+  public String  deleteEntityList(String gen_id,String entity_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
+    	params.put("gen_id", gen_id);
     	params.put("entity_id", entity_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/invoice_address",params);
+    	retval = this.doCurl("DELETE","/entity/list",params);
     } finally { 
     }
     return retval;
@@ -3031,27 +3052,6 @@
     	params.put("body", body);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/list",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Allows a list description object to be reduced in confidence
-   *
-   *  @param gen_id
-   *  @param entity_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityList(String gen_id,String entity_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("gen_id", gen_id);
-    	params.put("entity_id", entity_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/list",params);
     } finally { 
     }
     return retval;
@@ -3282,6 +3282,27 @@
 
 
   /**
+   * With a known entity id, a payment_type object can be added.
+   *
+   *  @param entity_id - the id of the entity to add the payment type to
+   *  @param payment_type - the payment type to add to the entity
+   *  @return - the data from the api
+  */
+  public String  postEntityPayment_type(String entity_id,String payment_type,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("payment_type", payment_type);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("POST","/entity/payment_type",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Allows a payment_type object to be reduced in confidence
    *
    *  @param entity_id
@@ -3303,20 +3324,20 @@
 
 
   /**
-   * With a known entity id, a payment_type object can be added.
+   * Allows a phone object to be reduced in confidence
    *
-   *  @param entity_id - the id of the entity to add the payment type to
-   *  @param payment_type - the payment type to add to the entity
+   *  @param entity_id
+   *  @param gen_id
    *  @return - the data from the api
   */
-  public String  postEntityPayment_type(String entity_id,String payment_type,String _user_id) throws Exception { 
+  public String  deleteEntityPhone(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
-    	params.put("payment_type", payment_type);
+    	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("POST","/entity/payment_type",params);
+    	retval = this.doCurl("DELETE","/entity/phone",params);
     } finally { 
     }
     return retval;
@@ -3342,27 +3363,6 @@
     	params.put("trackable", trackable);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/phone",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Allows a phone object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityPhone(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/phone",params);
     } finally { 
     }
     return retval;
@@ -3489,10 +3489,10 @@
 
 
   /**
-   * Gets a specific Vendasta review  for an entity via Vendasta API
+   * Gets a specific review  for an entity
    *
    *  @param entity_id - The entity with the review
-   *  @param review_id - The Vendasta review id
+   *  @param review_id - The review id
    *  @return - the data from the api
   */
   public String  getEntityReview(String entity_id,String review_id) throws Exception { 
@@ -3509,10 +3509,10 @@
 
 
   /**
-   * Deletes a specific Vendasta review  for an entity via Vendasta API
+   * Deletes a specific review for an entity via Review API
    *
    *  @param entity_id - The entity with the review
-   *  @param review_id - The Vendasta review id
+   *  @param review_id - The review id
    *  @return - the data from the api
   */
   public String  deleteEntityReview(String entity_id,String review_id,String _user_id) throws Exception { 
@@ -3533,8 +3533,8 @@
    * Appends a review to an entity
    *
    *  @param entity_id - the entity to append the review to
-   *  @param reviewer_user_id - The review id. If this is supplied vendasta will attempt to update an existing review
-   *  @param review_id - The review id. If this is supplied vendasta will attempt to update an existing review
+   *  @param reviewer_user_id - The user id
+   *  @param review_id - The review id. If this is supplied will attempt to update an existing review
    *  @param title - The title of the review
    *  @param content - The full text content of the review
    *  @param star_rating - The rating of the review
@@ -3561,7 +3561,7 @@
 
 
   /**
-   * Gets all Vendasta reviews  for an entity via Vendasta API
+   * Gets all reviews for an entity
    *
    *  @param entity_id - The entity with the review
    *  @param per_page - The entity with the review
@@ -4100,27 +4100,6 @@
 
 
   /**
-   * Allows a social media object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntitySocialmedia(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/socialmedia",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a social media object can be added.
    *
    *  @param entity_id
@@ -4144,20 +4123,20 @@
 
 
   /**
-   * Allows a special offer object to be reduced in confidence
+   * Allows a social media object to be reduced in confidence
    *
    *  @param entity_id
    *  @param gen_id
    *  @return - the data from the api
   */
-  public String  deleteEntitySpecial_offer(String entity_id,String gen_id,String _user_id) throws Exception { 
+  public String  deleteEntitySocialmedia(String entity_id,String gen_id,String _user_id) throws Exception { 
      Hashtable params = new Hashtable();
      String retval = "" ;
      try { 
     	params.put("entity_id", entity_id);
     	params.put("gen_id", gen_id);
     	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/special_offer",params);
+    	retval = this.doCurl("DELETE","/entity/socialmedia",params);
     } finally { 
     }
     return retval;
@@ -4189,6 +4168,27 @@
     	params.put("url", url);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/special_offer",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a special offer object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntitySpecial_offer(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/special_offer",params);
     } finally { 
     }
     return retval;
@@ -4265,27 +4265,6 @@
 
 
   /**
-   * Allows a testimonial object to be reduced in confidence
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityTestimonial(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/testimonial",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a testimonial object can be added.
    *
    *  @param entity_id
@@ -4306,6 +4285,27 @@
     	params.put("testifier_name", testifier_name);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/testimonial",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a testimonial object to be reduced in confidence
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityTestimonial(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/testimonial",params);
     } finally { 
     }
     return retval;
@@ -4527,27 +4527,6 @@
 
 
   /**
-   * Allows a yext list object to be removed
-   *
-   *  @param entity_id
-   *  @param gen_id
-   *  @return - the data from the api
-  */
-  public String  deleteEntityYext_list(String entity_id,String gen_id,String _user_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	params.put("gen_id", gen_id);
-    	params.put("_user_id", _user_id);
-    	retval = this.doCurl("DELETE","/entity/yext_list",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * With a known entity id, a yext list can be added
    *
    *  @param entity_id
@@ -4568,6 +4547,27 @@
     	params.put("type", type);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/entity/yext_list",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Allows a yext list object to be removed
+   *
+   *  @param entity_id
+   *  @param gen_id
+   *  @return - the data from the api
+  */
+  public String  deleteEntityYext_list(String entity_id,String gen_id,String _user_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("entity_id", entity_id);
+    	params.put("gen_id", gen_id);
+    	params.put("_user_id", _user_id);
+    	retval = this.doCurl("DELETE","/entity/yext_list",params);
     } finally { 
     }
     return retval;
@@ -4601,24 +4601,6 @@
 
 
   /**
-   * Remove a flatpack using a supplied flatpack_id
-   *
-   *  @param flatpack_id - the id of the flatpack to delete
-   *  @return - the data from the api
-  */
-  public String  deleteFlatpack(String flatpack_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("flatpack_id", flatpack_id);
-    	retval = this.doCurl("DELETE","/flatpack",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Get a flatpack
    *
    *  @param flatpack_id - the unique id to search for
@@ -4630,6 +4612,24 @@
      try { 
     	params.put("flatpack_id", flatpack_id);
     	retval = this.doCurl("GET","/flatpack",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Remove a flatpack using a supplied flatpack_id
+   *
+   *  @param flatpack_id - the id of the flatpack to delete
+   *  @return - the data from the api
+  */
+  public String  deleteFlatpack(String flatpack_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("flatpack_id", flatpack_id);
+    	retval = this.doCurl("DELETE","/flatpack",params);
     } finally { 
     }
     return retval;
@@ -5069,26 +5069,6 @@
 
 
   /**
-   * Remove a canned link to an existing flatpack site.
-   *
-   *  @param flatpack_id - the id of the flatpack to delete
-   *  @param gen_id - the id of the canned link to remove
-   *  @return - the data from the api
-  */
-  public String  deleteFlatpackLink(String flatpack_id,String gen_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("flatpack_id", flatpack_id);
-    	params.put("gen_id", gen_id);
-    	retval = this.doCurl("DELETE","/flatpack/link",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Add a canned link to an existing flatpack site.
    *
    *  @param flatpack_id - the id of the flatpack to delete
@@ -5106,6 +5086,26 @@
     	params.put("location", location);
     	params.put("linkText", linkText);
     	retval = this.doCurl("POST","/flatpack/link",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Remove a canned link to an existing flatpack site.
+   *
+   *  @param flatpack_id - the id of the flatpack to delete
+   *  @param gen_id - the id of the canned link to remove
+   *  @return - the data from the api
+  */
+  public String  deleteFlatpackLink(String flatpack_id,String gen_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("flatpack_id", flatpack_id);
+    	params.put("gen_id", gen_id);
+    	retval = this.doCurl("DELETE","/flatpack/link",params);
     } finally { 
     }
     return retval;
@@ -5247,6 +5247,24 @@
 
 
   /**
+   * Returns group that matches a given group id
+   *
+   *  @param group_id
+   *  @return - the data from the api
+  */
+  public String  getGroup(String group_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("group_id", group_id);
+    	retval = this.doCurl("GET","/group",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Update/Add a Group
    *
    *  @param group_id
@@ -5268,24 +5286,6 @@
     	params.put("stamp_user_id", stamp_user_id);
     	params.put("stamp_sql", stamp_sql);
     	retval = this.doCurl("POST","/group",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Returns group that matches a given group id
-   *
-   *  @param group_id
-   *  @return - the data from the api
-  */
-  public String  getGroup(String group_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("group_id", group_id);
-    	retval = this.doCurl("GET","/group",params);
     } finally { 
     }
     return retval;
@@ -5436,24 +5436,6 @@
 
 
   /**
-   * Get an ingest job from the collection
-   *
-   *  @param job_id
-   *  @return - the data from the api
-  */
-  public String  getIngest_job(String job_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("job_id", job_id);
-    	retval = this.doCurl("GET","/ingest_job",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Add a ingest job to the collection
    *
    *  @param description
@@ -5468,6 +5450,24 @@
     	params.put("category_type", category_type);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("POST","/ingest_job",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Get an ingest job from the collection
+   *
+   *  @param job_id
+   *  @return - the data from the api
+  */
+  public String  getIngest_job(String job_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("job_id", job_id);
+    	retval = this.doCurl("GET","/ingest_job",params);
     } finally { 
     }
     return retval;
@@ -5512,6 +5512,105 @@
      try { 
     	params.put("flush", flush);
     	retval = this.doCurl("GET","/ingest_queue",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns entities that do not have claim or advertisers data
+   *
+   *  @param country_id - Which country to return results for. An ISO compatible country code, E.g. ie e.g. ie
+   *  @param from_date
+   *  @param to_date
+   *  @param limit
+   *  @param offset
+   *  @return - the data from the api
+  */
+  public String  getLeadsAdded(String country_id,String from_date,String to_date,String _user_id,String limit,String offset) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country_id", country_id);
+    	params.put("from_date", from_date);
+    	params.put("to_date", to_date);
+    	params.put("_user_id", _user_id);
+    	params.put("limit", limit);
+    	params.put("offset", offset);
+    	retval = this.doCurl("GET","/leads/added",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns entities that have advertisers data
+   *
+   *  @param country_id - Which country to return results for. An ISO compatible country code, E.g. ie e.g. ie
+   *  @param from_date
+   *  @param to_date
+   *  @param limit
+   *  @param offset
+   *  @return - the data from the api
+  */
+  public String  getLeadsAdvertisers(String country_id,String from_date,String to_date,String _user_id,String limit,String offset) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country_id", country_id);
+    	params.put("from_date", from_date);
+    	params.put("to_date", to_date);
+    	params.put("_user_id", _user_id);
+    	params.put("limit", limit);
+    	params.put("offset", offset);
+    	retval = this.doCurl("GET","/leads/advertisers",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns entities that have claim data
+   *
+   *  @param country_id - Which country to return results for. An ISO compatible country code, E.g. ie e.g. ie
+   *  @param from_date
+   *  @param to_date
+   *  @param limit
+   *  @param offset
+   *  @return - the data from the api
+  */
+  public String  getLeadsClaimed(String country_id,String from_date,String to_date,String _user_id,String limit,String offset) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("country_id", country_id);
+    	params.put("from_date", from_date);
+    	params.put("to_date", to_date);
+    	params.put("_user_id", _user_id);
+    	params.put("limit", limit);
+    	params.put("offset", offset);
+    	retval = this.doCurl("GET","/leads/claimed",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Read a location with the supplied ID in the locations reference database.
+   *
+   *  @param location_id
+   *  @return - the data from the api
+  */
+  public String  getLocation(String location_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("location_id", location_id);
+    	retval = this.doCurl("GET","/location",params);
     } finally { 
     }
     return retval;
@@ -5570,24 +5669,6 @@
     	params.put("searchable_id", searchable_id);
     	params.put("searchable_ids", searchable_ids);
     	retval = this.doCurl("POST","/location",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Read a location with the supplied ID in the locations reference database.
-   *
-   *  @param location_id
-   *  @return - the data from the api
-  */
-  public String  getLocation(String location_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("location_id", location_id);
-    	retval = this.doCurl("GET","/location",params);
     } finally { 
     }
     return retval;
@@ -5742,24 +5823,6 @@
    * Fetch the project logo, the symbol of the Wolf
    *
    *  @param a
-   *  @return - the data from the api
-  */
-  public String  putLogo(String a) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("a", a);
-    	retval = this.doCurl("PUT","/logo",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Fetch the project logo, the symbol of the Wolf
-   *
-   *  @param a
    *  @param b
    *  @param c
    *  @param d
@@ -5774,6 +5837,24 @@
     	params.put("c", c);
     	params.put("d", d);
     	retval = this.doCurl("GET","/logo",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Fetch the project logo, the symbol of the Wolf
+   *
+   *  @param a
+   *  @return - the data from the api
+  */
+  public String  putLogo(String a) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("a", a);
+    	retval = this.doCurl("PUT","/logo",params);
     } finally { 
     }
     return retval;
@@ -5991,6 +6072,24 @@
 
 
   /**
+   * Fetching a message
+   *
+   *  @param message_id - The message id to pull the message for
+   *  @return - the data from the api
+  */
+  public String  getMessage(String message_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("message_id", message_id);
+    	retval = this.doCurl("GET","/message",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Update/Add a message
    *
    *  @param message_id - Message id to pull
@@ -6018,24 +6117,6 @@
     	params.put("body", body);
     	params.put("bounced", bounced);
     	retval = this.doCurl("POST","/message",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Fetching a message
-   *
-   *  @param message_id - The message id to pull the message for
-   *  @return - the data from the api
-  */
-  public String  getMessage(String message_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("message_id", message_id);
-    	retval = this.doCurl("GET","/message",params);
     } finally { 
     }
     return retval;
@@ -6283,6 +6364,24 @@
 
 
   /**
+   * Fetch an ops_log
+   *
+   *  @param ops_log_id
+   *  @return - the data from the api
+  */
+  public String  getOps_log(String ops_log_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("ops_log_id", ops_log_id);
+    	retval = this.doCurl("GET","/ops_log",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Create an ops_log
    *
    *  @param success
@@ -6302,24 +6401,6 @@
     	params.put("data", data);
     	params.put("slack_channel", slack_channel);
     	retval = this.doCurl("POST","/ops_log",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Fetch an ops_log
-   *
-   *  @param ops_log_id
-   *  @return - the data from the api
-  */
-  public String  getOps_log(String ops_log_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("ops_log_id", ops_log_id);
-    	retval = this.doCurl("GET","/ops_log",params);
     } finally { 
     }
     return retval;
@@ -6384,24 +6465,6 @@
 
 
   /**
-   * Returns the product information given a valid product_id
-   *
-   *  @param product_id
-   *  @return - the data from the api
-  */
-  public String  getProduct(String product_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("product_id", product_id);
-    	retval = this.doCurl("GET","/product",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Update/Add a product
    *
    *  @param product_id - The ID of the product
@@ -6439,6 +6502,24 @@
     	params.put("outro_paragraph", outro_paragraph);
     	params.put("thanks_paragraph", thanks_paragraph);
     	retval = this.doCurl("POST","/product",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns the product information given a valid product_id
+   *
+   *  @param product_id
+   *  @return - the data from the api
+  */
+  public String  getProduct(String product_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("product_id", product_id);
+    	retval = this.doCurl("GET","/product",params);
     } finally { 
     }
     return retval;
@@ -6660,24 +6741,6 @@
 
 
   /**
-   * Delete a publisher with a specified publisher_id
-   *
-   *  @param publisher_id
-   *  @return - the data from the api
-  */
-  public String  deletePublisher(String publisher_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("publisher_id", publisher_id);
-    	retval = this.doCurl("DELETE","/publisher",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Returns publisher that matches a given publisher id
    *
    *  @param publisher_id
@@ -6721,6 +6784,24 @@
     	params.put("premium_adverts_platinum", premium_adverts_platinum);
     	params.put("premium_adverts_gold", premium_adverts_gold);
     	retval = this.doCurl("POST","/publisher",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Delete a publisher with a specified publisher_id
+   *
+   *  @param publisher_id
+   *  @return - the data from the api
+  */
+  public String  deletePublisher(String publisher_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("publisher_id", publisher_id);
+    	retval = this.doCurl("DELETE","/publisher",params);
     } finally { 
     }
     return retval;
@@ -6802,24 +6883,6 @@
 
 
   /**
-   * With a known queue id, a queue item can be removed.
-   *
-   *  @param queue_id
-   *  @return - the data from the api
-  */
-  public String  deleteQueue(String queue_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("queue_id", queue_id);
-    	retval = this.doCurl("DELETE","/queue",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Create a queue item
    *
    *  @param queue_name
@@ -6833,6 +6896,24 @@
     	params.put("queue_name", queue_name);
     	params.put("data", data);
     	retval = this.doCurl("PUT","/queue",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * With a known queue id, a queue item can be removed.
+   *
+   *  @param queue_id
+   *  @return - the data from the api
+  */
+  public String  deleteQueue(String queue_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("queue_id", queue_id);
+    	retval = this.doCurl("DELETE","/queue",params);
     } finally { 
     }
     return retval;
@@ -6938,24 +7019,6 @@
 
 
   /**
-   * Returns reseller that matches a given reseller id
-   *
-   *  @param reseller_id
-   *  @return - the data from the api
-  */
-  public String  getReseller(String reseller_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("reseller_id", reseller_id);
-    	retval = this.doCurl("GET","/reseller",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Update/Add a reseller
    *
    *  @param reseller_id
@@ -6979,6 +7042,24 @@
     	params.put("products", products);
     	params.put("master_user_id", master_user_id);
     	retval = this.doCurl("POST","/reseller",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns reseller that matches a given reseller id
+   *
+   *  @param reseller_id
+   *  @return - the data from the api
+  */
+  public String  getReseller(String reseller_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("reseller_id", reseller_id);
+    	retval = this.doCurl("GET","/reseller",params);
     } finally { 
     }
     return retval;
@@ -7501,24 +7582,6 @@
 
 
   /**
-   * Returns a Syndication Submission
-   *
-   *  @param syndication_submission_id
-   *  @return - the data from the api
-  */
-  public String  getSyndication_submission(String syndication_submission_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("syndication_submission_id", syndication_submission_id);
-    	retval = this.doCurl("GET","/syndication_submission",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Creates a new Syndication Submission
    *
    *  @param syndication_type
@@ -7536,6 +7599,24 @@
     	params.put("publisher_id", publisher_id);
     	params.put("submission_id", submission_id);
     	retval = this.doCurl("PUT","/syndication_submission",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Returns a Syndication Submission
+   *
+   *  @param syndication_submission_id
+   *  @return - the data from the api
+  */
+  public String  getSyndication_submission(String syndication_submission_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("syndication_submission_id", syndication_submission_id);
+    	retval = this.doCurl("GET","/syndication_submission",params);
     } finally { 
     }
     return retval;
@@ -8965,24 +9046,6 @@
 
 
   /**
-   * Deleting a traction
-   *
-   *  @param traction_id
-   *  @return - the data from the api
-  */
-  public String  deleteTraction(String traction_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("traction_id", traction_id);
-    	retval = this.doCurl("DELETE","/traction",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
    * Fetching a traction
    *
    *  @param traction_id
@@ -8994,6 +9057,24 @@
      try { 
     	params.put("traction_id", traction_id);
     	retval = this.doCurl("GET","/traction",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
+   * Deleting a traction
+   *
+   *  @param traction_id
+   *  @return - the data from the api
+  */
+  public String  deleteTraction(String traction_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("traction_id", traction_id);
+    	retval = this.doCurl("DELETE","/traction",params);
     } finally { 
     }
     return retval;
@@ -9061,6 +9142,24 @@
 
 
   /**
+   * Given a transaction_id retrieve information on it
+   *
+   *  @param transaction_id
+   *  @return - the data from the api
+  */
+  public String  getTransaction(String transaction_id) throws Exception { 
+     Hashtable params = new Hashtable();
+     String retval = "" ;
+     try { 
+    	params.put("transaction_id", transaction_id);
+    	retval = this.doCurl("GET","/transaction",params);
+    } finally { 
+    }
+    return retval;
+  }
+
+
+  /**
    * Create a new transaction
    *
    *  @param entity_id
@@ -9082,24 +9181,6 @@
     	params.put("currency", currency);
     	params.put("notes", notes);
     	retval = this.doCurl("PUT","/transaction",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Given a transaction_id retrieve information on it
-   *
-   *  @param transaction_id
-   *  @return - the data from the api
-  */
-  public String  getTransaction(String transaction_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("transaction_id", transaction_id);
-    	retval = this.doCurl("GET","/transaction",params);
     } finally { 
     }
     return retval;
@@ -9450,58 +9531,6 @@
     	params.put("social_network", social_network);
     	params.put("_user_id", _user_id);
     	retval = this.doCurl("DELETE","/user/social_network",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Converts an Entity into a submission at the Vendasta API
-   *
-   *  @param entity_id - The entity to parse
-   *  @return - the data from the api
-  */
-  public String  postVendastaListing(String entity_id) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("entity_id", entity_id);
-    	retval = this.doCurl("POST","/vendasta/listing",params);
-    } finally { 
-    }
-    return retval;
-  }
-
-
-  /**
-   * Saves a review on a Vendasta Listing
-   *
-   *  @param listing_id - The vendasta listing to append the review to
-   *  @param review_id - The review id. If this is supplied vendasta will attempt to update an existing review
-   *  @param title - The title of the review
-   *  @param content - The full text content of the review
-   *  @param star_rating - The rating of the review
-   *  @param reviewer_name - The name of the reviewer who created the review
-   *  @param reviewer_email - The email address of the reviewer
-   *  @param published_date - The date on which the review was published
-   *  @param url - We are going to use this field to store the originating domain of the review
-   *  @return - the data from the api
-  */
-  public String  postVendastaReview(String listing_id,String review_id,String title,String content,String star_rating,String reviewer_name,String reviewer_email,String published_date,String url) throws Exception { 
-     Hashtable params = new Hashtable();
-     String retval = "" ;
-     try { 
-    	params.put("listing_id", listing_id);
-    	params.put("review_id", review_id);
-    	params.put("title", title);
-    	params.put("content", content);
-    	params.put("star_rating", star_rating);
-    	params.put("reviewer_name", reviewer_name);
-    	params.put("reviewer_email", reviewer_email);
-    	params.put("published_date", published_date);
-    	params.put("url", url);
-    	retval = this.doCurl("POST","/vendasta/review",params);
     } finally { 
     }
     return retval;
